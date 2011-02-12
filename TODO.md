@@ -9,3 +9,4 @@ TODO
 * Add support for shipping either pre or post tax
 * Add block syntax for initializing invoices, just to make things a tiny bit prettier
 * Add ability to set pdf document size to something other than 8.5 x 11
+* Change company details to be part of Payday::Config
