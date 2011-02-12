@@ -4,10 +4,9 @@ module Payday
   class Invoice
     include Payday::PdfRenderer
     
-    attr_accessor :company_details, :bill_to, :ship_to, :notes, :line_items, :tax_rate, :tax_description
+    attr_accessor :bill_to, :ship_to, :notes, :line_items, :tax_rate, :tax_description
     
     def initialize(options =  {})
-      self.company_details = options[:company_details] || nil
       self.bill_to = options[:bill_to] || nil
       self.ship_to = options[:ship_to] || nil
       self.notes = options[:notes] || nil

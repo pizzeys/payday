@@ -3,12 +3,11 @@ require "test/test_helper"
 module Payday
   class InvoiceTest < Test::Unit::TestCase
     test "that setting values through the options hash on initialization works" do
-      i = Invoice.new(:company_details => "Awesome Corp.", :bill_to => "Here", :ship_to => "There",
-          :notes => "These are some notes.", 
+      i = Invoice.new(:bill_to => "Here", :ship_to => "There",
+          :notes => "These are some notes.",
           :line_items => [LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")],
           :tax_rate => 12.5, :tax_description => "Local Sales Tax, 12.5%")
           
-      assert_equal "Awesome Corp.", i.company_details
       assert_equal "Here", i.bill_to
       assert_equal "There", i.ship_to
       assert_equal "These are some notes.", i.notes
@@ -16,7 +15,7 @@ module Payday
       assert_equal BigDecimal.new("12.5"), i.tax_rate
       assert_equal "Local Sales Tax, 12.5%", i.tax_description
     end
-    
+        
     test "that subtotal totals up all of the line items in an invoice correctly" do
       i = Invoice.new
       
