@@ -1,5 +1,5 @@
 source "http://rubygems.org"
 
-gem "prawn", "0.8.4"
+gem "prawn", "0.11.1.pre"
 gem "rake"
 

@@ -1,18 +1,16 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    prawn (0.8.4)
-      prawn-core (>= 0.8.4, < 0.9)
-      prawn-layout (>= 0.8.4, < 0.9)
-      prawn-security (>= 0.8.4, < 0.9)
-    prawn-core (0.8.4)
-    prawn-layout (0.8.4)
-    prawn-security (0.8.4)
+    Ascii85 (1.0.0)
+    pdf-reader (0.9.1)
+      Ascii85 (>= 0.9)
+    prawn (0.11.1.pre)
+      pdf-reader (>= 0.8.1)
     rake (0.8.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  prawn (= 0.8.4)
+  prawn (= 0.11.1.pre)
   rake

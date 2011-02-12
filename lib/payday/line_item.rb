@@ -7,21 +7,23 @@ module Payday
   class LineItem
     attr_accessor :description, :quantity, :price
     
-    def initialize
-      @quantity = BigDecimal.new("1")
-      @price = BigDecimal.new("0.00")
+    def initialize(options = {})
+      @quantity = options[:quantity] || BigDecimal.new("1") 
+      @price = options[:price] || BigDecimal.new("0.00")
+      self.description = options[:description] || ""
     end
     
     def quantity=(value)
       @quantity = BigDecimal.new(value.to_s)
-    rescue => e
-      raise Payday::Error, "Quantity couldn't be converted to a BigDecimal: #{e.message}"
     end
     
     def price=(value)
       @price = BigDecimal.new(value.to_s)
-    rescue => e
-      raise Payday::Error, "Price couldn't be converted to a BigDecimal: #{e.message}"
+    end
+    
+    # Returns the total price for this line item, or price * quantity
+    def total
+      price * quantity
     end
   end
 end
