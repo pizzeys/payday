@@ -12,3 +12,4 @@ TODO
 * Check and if given invoice object includes company_name and company_details, use them in the invoice
 * Add ability to put company info under logo rather than beside it
 * Ignore company name if it's not present
+* Handle displaying an invoice number
