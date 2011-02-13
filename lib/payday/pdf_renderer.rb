@@ -35,8 +35,7 @@ class Payday::PdfRenderer
     table_data << [nil, nil, bold_cell(pdf, "Total:"), number_to_currency(invoice.total)]
     
     pdf.move_cursor_to(pdf.cursor - 30)
-    table = pdf.make_table(table_data, :width => pdf.bounds.width)
-    puts table.row_count
+    pdf.table(table_data, :width => pdf.bounds.width)
     
     pdf.move_cursor_to(pdf.cursor - 10)
     pdf.text(invoice.notes.to_s)
