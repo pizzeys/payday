@@ -2,8 +2,6 @@ module Payday
   
   # Basically just an invoice. Stick a ton of line items in it, add some details, and then render it out!
   class Invoice
-    include Payday::PdfRenderer
-    
     attr_accessor :bill_to, :ship_to, :notes, :line_items, :tax_rate, :tax_description
     
     def initialize(options =  {})
@@ -32,6 +30,11 @@ module Payday
     # Calculates the total for this invoice.
     def total
       subtotal + tax
+    end
+    
+    # Renders this invoice to pdf
+    def render_to_pdf
+      PdfRenderer.render(self)
     end
     
     # Renders this invoice to html. The html is fairly set in stone but pretty easy to style however you'd like.

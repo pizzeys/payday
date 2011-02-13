@@ -8,8 +8,8 @@ module Payday
     attr_accessor :description, :quantity, :price
     
     def initialize(options = {})
-      @quantity = options[:quantity] || BigDecimal.new("1") 
-      @price = options[:price] || BigDecimal.new("0.00")
+      self.quantity = options[:quantity] || "1"
+      self.price = options[:price] || "0.00"
       self.description = options[:description] || ""
     end
     
