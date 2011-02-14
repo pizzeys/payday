@@ -55,9 +55,10 @@ module Payday
     end
     
     test "rendering to pdf" do
-      i = Invoice.new(:tax_rate => 0.1, :notes => "These are some crazy awesome notes!", :invoice_number => 12)
+      i = Invoice.new(:tax_rate => 0.1, :notes => "These are some crazy awesome notes!", :invoice_number => 12,
+          :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222", :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229")
       
-      80.times do
+      3.times do
         i.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
         i.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
         i.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
