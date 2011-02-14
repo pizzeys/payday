@@ -21,8 +21,8 @@ module Payday
       @price = BigDecimal.new(value.to_s)
     end
     
-    # Returns the total price for this line item, or price * quantity
-    def total
+    # Returns the total amount for this line item, or price * quantity
+    def amount
       price * quantity
     end
   end

@@ -17,9 +17,9 @@ module Payday
       assert_equal "12 Pairs of Pants", li.description
     end
     
-    test "that total returns the correct total" do
+    test "that amount returns the correct amount" do
       li = LineItem.new(:price => 10, :quantity => 12)
-      assert_equal BigDecimal.new("120"), li.total
+      assert_equal BigDecimal.new("120"), li.amount
     end
   end
 end

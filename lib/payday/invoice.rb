@@ -2,9 +2,10 @@ module Payday
   
   # Basically just an invoice. Stick a ton of line items in it, add some details, and then render it out!
   class Invoice
-    attr_accessor :bill_to, :ship_to, :notes, :line_items, :tax_rate, :tax_description
+    attr_accessor :invoice_number, :bill_to, :ship_to, :notes, :line_items, :tax_rate, :tax_description
     
     def initialize(options =  {})
+      self.invoice_number = options[:invoice_number] || nil
       self.bill_to = options[:bill_to] || nil
       self.ship_to = options[:ship_to] || nil
       self.notes = options[:notes] || nil
@@ -15,7 +16,7 @@ module Payday
     
     # Calculates the subtotal of this invoice by adding up all of the line items
     def subtotal
-      line_items.inject(BigDecimal.new("0")) { |result, item| result += item.total }
+      line_items.inject(BigDecimal.new("0")) { |result, item| result += item.amount }
     end
     
     def tax_rate=(value)
