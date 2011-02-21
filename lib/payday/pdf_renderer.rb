@@ -6,14 +6,29 @@ class Payday::PdfRenderer
     pdf.font_size(8)
     
     # render the logo
-    logo_info = pdf.image(
-        defined?(invoice.invoice_logo) && invoice.invoice_logo ? invoice.invoice_logo : Payday::Config.default.invoice_logo, 
-        :at => pdf.bounds.top_left, :fit => [100, 100])
+    logo_info = pdf.image(invoice_or_default(invoice, :invoice_logo), :at => pdf.bounds.top_left, :fit => [200, 100])
 
+    # render the stamp
+    stamp = nil
+    if invoice.paid?
+      stamp = "PAID"
+    elsif invoice.overdue?
+      stamp = "OVERDUE"
+    end
+
+    pdf.bounding_box([200, pdf.cursor - 50], :width => pdf.bounds.width - 400) do
+      pdf.font("Helvetica-Bold") do
+        pdf.fill_color "cc0000"
+        pdf.text stamp, :align=> :center, :size => 25, :rotate => 15
+      end
+    end
+
+    pdf.fill_color "000000"
+    
     # render the company details
     table_data = []
-    table_data << [bold_cell(pdf, defined?(invoice.company_name) && invoice.company_name ? invoice.company_name : Payday::Config.default.company_name, :size => 12)]
-    table_data << [defined?(invoice.company_details) && invoice.company_details ? invoice.company_details : Payday::Config.default.company_details]
+    table_data << [bold_cell(pdf, invoice_or_default(invoice, :company_name), :size => 12)]
+    table_data << [invoice_or_default(invoice, :company_details)]
     table = pdf.make_table(table_data, :cell_style => { :borders => [], :padding => [2, 0] })
     pdf.bounding_box([pdf.bounds.width - table.width, pdf.bounds.top], :width => table.width, :height => table.height) do
       table.draw
@@ -37,14 +52,36 @@ class Payday::PdfRenderer
     # render the invoice details
     pdf.move_cursor_to(pdf.cursor - 20)
     table_data = []
-    if invoice.invoice_number
-      table_data << [bold_cell(pdf, "Invoice #"), bold_cell(pdf, invoice.invoice_number.to_s)]
+    
+    # invoice number
+    if defined?(invoice.invoice_number) && invoice.invoice_number
+      table_data << [bold_cell(pdf, "Invoice #:"), bold_cell(pdf, invoice.invoice_number.to_s, :align => :right)]
+    end
+    
+    # Due on
+    if defined?(invoice.due_on) && invoice.due_on
+      if invoice.due_on.is_a?(Date)
+        due_date = invoice.due_on.strftime(Payday::Config.default.date_format)
+      else
+        due_date = invoice.due_on.to_s
+      end
+      
+      table_data << [bold_cell(pdf, "Due Date:"), bold_cell(pdf, due_date, :align => :right)]
+    end
+    
+    # Paid on
+    if defined?(invoice.paid_on) && invoice.paid_on
+      if invoice.paid_on.is_a?(Date)
+        paid_date = invoice.paid_on.strftime(Payday::Config.default.date_format)
+      else
+        paid_date = invoice.paid_on.to_s
+      end
+      
+      table_data << [bold_cell(pdf, "Paid Date:"), bold_cell(pdf, paid_date, :align => :right)]
     end
     
     if table_data.length > 0
-      pdf.table(table_data, :cell_style => { :borders => [:bottom], :border_color => "cccccc"}) do
-        rows(row_length - 1).style(:borders => [])
-      end
+      pdf.table(table_data, :cell_style => { :borders => [], :padding => 1 })
     end
     
     # render the line items
@@ -73,9 +110,9 @@ class Payday::PdfRenderer
     
     # render the totals lines
     table_data = []
-    table_data << [nil, nil, bold_cell(pdf, "Subtotal:"), cell(pdf, number_to_currency(invoice.subtotal), :align => :right)]
-    table_data << [nil, nil, bold_cell(pdf, "Tax:"), cell(pdf, number_to_currency(invoice.tax), :align => :right)]
-    table_data << [nil, nil, bold_cell(pdf, "Total:", :size => 12), 
+    table_data << [bold_cell(pdf, "Subtotal:"), cell(pdf, number_to_currency(invoice.subtotal), :align => :right)]
+    table_data << [bold_cell(pdf, "Tax:"), cell(pdf, number_to_currency(invoice.tax), :align => :right)]
+    table_data << [bold_cell(pdf, "Total:", :size => 12), 
         cell(pdf, number_to_currency(invoice.total), :size => 12, :align => :right)]
     table = pdf.make_table(table_data, :cell_style => { :borders => [] })
     pdf.bounding_box([pdf.bounds.width - table.width, pdf.cursor], :width => table.width, :height => table.height + 2) do
@@ -83,21 +120,31 @@ class Payday::PdfRenderer
     end
     
     # render the notes
-    pdf.move_cursor_to(pdf.cursor - 30)
-    pdf.font("Helvetica-Bold") do
-      pdf.text("Notes")
+    if defined?(invoice.notes) && invoice.notes
+      pdf.move_cursor_to(pdf.cursor - 30)
+      pdf.font("Helvetica-Bold") do
+        pdf.text("Notes")
+      end
+      pdf.line_width = 0.5
+      pdf.stroke_color = "cccccc"
+      pdf.stroke_line([0, pdf.cursor - 3, pdf.bounds.width, pdf.cursor - 3])
+      pdf.move_cursor_to(pdf.cursor - 10)
+      pdf.text(invoice.notes.to_s)
     end
-    pdf.line_width = 0.5
-    pdf.stroke_color = "cccccc"
-    pdf.stroke_line([0, pdf.cursor - 3, pdf.bounds.width, pdf.cursor - 3])
-    pdf.move_cursor_to(pdf.cursor - 10)
-    pdf.text(invoice.notes.to_s)
     
     # just dump it all out to a file for now
     pdf.render_file("tmp/testing.pdf")
   end
   
   private
+    def self.invoice_or_default(invoice, property)
+      if invoice.respond_to?(property) && invoice.send(property)
+        invoice.send(property)
+      else
+        Payday::Config.default.send(property)
+      end
+    end
+  
     def self.cell(pdf, text, options = {})
       Prawn::Table::Cell::Text.make(pdf, text, options)
     end
@@ -107,8 +154,13 @@ class Payday::PdfRenderer
       cell(pdf, text, options)
     end
     
+    # from Rails, I think
+    def self.number_with_delimiter(number, delimiter=",")
+      number.to_s.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1#{delimiter}")
+    end
+    
     def self.number_to_currency(number)
-      sprintf("$%.02f", number)
+      number_with_delimiter(sprintf("$%.02f", number))
     end
     
     def self.max_cell_width(cell_proxy)

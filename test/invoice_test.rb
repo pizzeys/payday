@@ -54,8 +54,29 @@ module Payday
       assert_equal BigDecimal.new("1243"), i.total
     end
     
+    test "overdue? is false when past date and unpaid" do
+      i = Invoice.new(:due_on => Date.today - 1)
+      assert i.overdue?
+    end
+    
+    test "overdue? is true when past date but paid" do
+      i = Invoice.new(:due_on => Date.today - 1, :paid_on => Date.today)
+      assert !i.overdue?
+    end
+    
+    test "paid is false when not paid" do
+      i = Invoice.new
+      assert !i.paid?
+    end
+    
+    test "paid is true when paid" do
+      i = Invoice.new(:paid_on => Date.today)
+      assert i.paid?
+    end
+    
     test "rendering to pdf" do
       i = Invoice.new(:tax_rate => 0.1, :notes => "These are some crazy awesome notes!", :invoice_number => 12,
+          :due_on => Date.civil(2011, 1, 22), :paid_on => Date.civil(2012, 2, 22),
           :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222", :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229")
       
       3.times do
@@ -63,7 +84,7 @@ module Payday
         i.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
         i.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
       end
-      
+
       i.render_to_pdf
     end
   end
