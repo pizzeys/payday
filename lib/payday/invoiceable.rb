@@ -1,6 +1,6 @@
 # Include {Payday::Invoiceable} in your Invoice class to make it Payday compatible. Payday
-# expects that a +line_items+ method containing an Enumerable of {Payday::LineItemable} compatible
-# elements exists.
+# expects that a +line_items+ method containing an Enumerable of {Payday::LineItem} compatible
+# elements exists. Those LineItem objects primarily need to include quantity, price, and description methods.
 #
 # Although not required, if a +tax_rate+ method exists, {Payday::Invoiceable} will use it to calculate tax
 # when generating an invoice. We include a simple tax method that calculates tax, but it's probably wiser
