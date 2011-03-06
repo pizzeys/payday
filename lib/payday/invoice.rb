@@ -27,7 +27,9 @@ module Payday
     
     # Calculates the tax for this invoice.
     def tax
-      subtotal * tax_rate
+      calculated = subtotal * tax_rate
+      return 0 if calculated < 0
+      calculated
     end
     
     # Calculates the total for this invoice.

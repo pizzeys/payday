@@ -39,6 +39,13 @@ module Payday
       assert_equal(BigDecimal.new("10"), i.tax)
     end
     
+    test "that taxes aren't applied to invoices with a subtotal of 0 or a negative amount" do
+      i = Invoice.new(:tax_rate => 0.1)
+      i.line_items << LineItem.new(:price => -1, :quantity => 100, :description => "Negative Priced Pants")
+      
+      assert_equal(BigDecimal.new("0"), i.tax)
+    end
+    
     test "that the total for this invoice calculates correctly" do
       i = Invoice.new(:tax_rate => 0.1)
       

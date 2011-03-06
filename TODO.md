@@ -3,7 +3,6 @@ TODO
 
 High
 ---
-* Stamps (paid, overdue)
 * Move a lot of code into modules that can be included so that classes can be implemented using ActiveRecord or anything
   else.
 * Generate and make sure docs are good
