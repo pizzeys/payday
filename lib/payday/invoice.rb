@@ -2,6 +2,8 @@ module Payday
   
   # Basically just an invoice. Stick a ton of line items in it, add some details, and then render it out!
   class Invoice
+    include Payday::Invoiceable
+    
     attr_accessor :invoice_number, :bill_to, :ship_to, :notes, :line_items, :tax_rate, :tax_description, :due_on, :paid_on
     
     def initialize(options =  {})
@@ -16,38 +18,10 @@ module Payday
       self.paid_on = options[:paid_on] || nil
     end
     
-    # Calculates the subtotal of this invoice by adding up all of the line items
-    def subtotal
-      line_items.inject(BigDecimal.new("0")) { |result, item| result += item.amount }
-    end
-    
+    # The tax rate that we're applying, as a BigDecimal    
     def tax_rate=(value)
       @tax_rate = BigDecimal.new(value.to_s)
     end
     
-    # Calculates the tax for this invoice.
-    def tax
-      calculated = subtotal * tax_rate
-      return 0 if calculated < 0
-      calculated
-    end
-    
-    # Calculates the total for this invoice.
-    def total
-      subtotal + tax
-    end
-    
-    def overdue?
-      defined?(:due_on) && due_on.is_a?(Date) && due_on < Date.today && !paid_on
-    end
-    
-    def paid?
-      defined?(:paid_on) && paid_on && true
-    end
-    
-    # Renders this invoice to pdf
-    def render_to_pdf
-      PdfRenderer.render(self)
-    end
   end
 end

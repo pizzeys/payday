@@ -1,6 +1,6 @@
 module Payday
   class Config
-    attr_accessor :invoice_logo, :company_name, :company_details, :date_format
+    attr_accessor :invoice_logo, :company_name, :company_details, :date_format, :currency
     
     def initialize
       self.invoice_logo = File.join(File.dirname(__FILE__), "..", "..", "assets", "default_logo.png")

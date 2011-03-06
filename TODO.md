@@ -11,6 +11,8 @@ High
 
 Medium
 ---
+* Add support for Money gem or BigDecimal or numeric
+* Add support for currencies other than USD
 * Add support for blank lines
 * Apply different tax rates to different line items
 * Add support for shipping either pre or post tax
