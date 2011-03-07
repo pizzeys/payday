@@ -1,8 +1,6 @@
 source "http://rubygems.org"
 
-gemspec :development_group => :development
-
-gem "prawn", "0.11.1.pre"
+gemspec
 
 group :development do
   gem "rake"

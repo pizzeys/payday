@@ -12,6 +12,8 @@ Gem::Specification.new do |s|
   s.summary     = %q{git remote add origin git@github.com:commondream/payday.git}
   s.description = %q{Payday is a library for rendering invoices. At present it supports rendering invoices to pdfs, but we're planning on adding support for other formats in the near future.}
 
+  s.add_dependency("prawn", "~> 0.11.1.pre")
+
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }

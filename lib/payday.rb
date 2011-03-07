@@ -2,8 +2,7 @@
 require 'bigdecimal'
 require 'prawn'
 
-require File.join(File.dirname(__FILE__), "version")
-
+require File.join(File.dirname(__FILE__), "payday", "version")
 require File.join(File.dirname(__FILE__), "payday", "config")
 require File.join(File.dirname(__FILE__), "payday", "line_item")
 require File.join(File.dirname(__FILE__), "payday", "pdf_renderer")
