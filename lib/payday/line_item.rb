@@ -5,6 +5,8 @@ module Payday
   # them your invoice math could get pretty messed up. It's recommended that both values be set to +BigDecimal+ values.
   # Otherwise, we'll do our best to convert the set values to a +BigDecimal+.
   class LineItem
+    include LineItemable
+    
     attr_accessor :description, :quantity, :price
     
     # Initializes a new LineItem
@@ -22,11 +24,6 @@ module Payday
     # Sets the price for this {LineItem}
     def price=(value)
       @price = BigDecimal.new(value.to_s)
-    end
-    
-    # Returns the total amount for this {LineItem}, or {#price} * {#quantity}
-    def amount
-      price * quantity
     end
   end
 end
