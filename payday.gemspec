@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Alan Johnson"]
   s.email       = ["alan@commondream.net"]
   s.homepage    = ""
-  s.summary     = %q{Payday is a library for rendering invoices.}
+  s.summary     = %q{git remote add origin git@github.com:commondream/payday.git}
   s.description = %q{Payday is a library for rendering invoices. At present it supports rendering invoices to pdfs, but we're planning on adding support for other formats in the near future.}
 
   s.files         = `git ls-files`.split("\n")
