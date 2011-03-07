@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gemspec
+gemspec :development_group => :development
 
 gem "prawn", "0.11.1.pre"
 
