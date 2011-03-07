@@ -81,7 +81,10 @@ module Payday
       assert i.paid?
     end
     
-    test "rendering to pdf" do
+    test "rendering to file" do
+      File.unlink("tmp/testing.pdf") if File.exists?("tmp/testing.pdf")
+      assert !File.exists?("tmp/testing.pdf")
+      
       i = Invoice.new(:tax_rate => 0.1, :notes => "These are some crazy awesome notes!", :invoice_number => 12,
           :due_on => Date.civil(2011, 1, 22), :paid_on => Date.civil(2012, 2, 22),
           :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222", :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229")
@@ -92,7 +95,22 @@ module Payday
         i.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
       end
 
-      i.render_to_pdf
+      i.render_pdf_to_file("tmp/testing.pdf")
+      assert File.exists?("tmp/testing.pdf")
+    end
+    
+    test "rendering to string" do
+      i = Invoice.new(:tax_rate => 0.1, :notes => "These are some crazy awesome notes!", :invoice_number => 12,
+          :due_on => Date.civil(2011, 1, 22), :paid_on => Date.civil(2012, 2, 22),
+          :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222", :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229")
+
+      3.times do
+        i.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
+        i.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
+        i.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
+      end
+
+      assert_not_nil i.render_pdf
     end
   end
 end

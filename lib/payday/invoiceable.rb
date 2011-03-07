@@ -39,8 +39,13 @@ module Payday::Invoiceable
     defined?(:paid_on) && !!paid_on
   end
   
-  # Renders this invoice to pdf
-  def render_to_pdf
+  # Renders this invoice to pdf as a string
+  def render_pdf
     Payday::PdfRenderer.render(self)
+  end
+  
+  # Renders this invoice to pdf
+  def render_pdf_to_file(path)
+    Payday::PdfRenderer.render_to_file(self, path)
   end
 end
