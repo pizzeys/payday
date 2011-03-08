@@ -111,7 +111,7 @@ module Payday
             bold_cell(pdf, "Quantity", :align => :center, :borders => []), 
             bold_cell(pdf, "Amount", :align => :center, :borders => [])]
         invoice.line_items.each do |line|
-          table_data << [line.description, number_to_currency(line.price), line.quantity.to_s("F"),
+          table_data << [line.description, number_to_currency(line.price), line.quantity,
               number_to_currency(line.amount)]
         end
 
