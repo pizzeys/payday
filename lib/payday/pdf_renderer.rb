@@ -61,10 +61,12 @@ module Payday
         end
 
         # render ship to
-        table = pdf.make_table([[bold_cell(pdf, "Ship To")], [invoice.ship_to]], :column_widths => [200],
-            :cell_style => bill_to_cell_style)
-        pdf.bounding_box([pdf.bounds.width - table.width, pdf.cursor], :width => table.width, :height => table.height + 2) do
-          table.draw
+        if defined?(invoice.ship_to)
+          table = pdf.make_table([[bold_cell(pdf, "Ship To")], [invoice.ship_to]], :column_widths => [200],
+              :cell_style => bill_to_cell_style)
+          pdf.bounding_box([pdf.bounds.width - table.width, pdf.cursor], :width => table.width, :height => table.height + 2) do
+            table.draw
+          end
         end
 
         # render the invoice details
