@@ -51,7 +51,7 @@ Be sure to restart your server after you edit the mime_types initializer. The up
 
 Example Application
 ===
-There's an example Rails application running on Heroku at [http://payday-example.heroku.com].
+There's an example Rails application running on Heroku at [http://payday-example.heroku.com](http://payday-example.heroku.com).
 
 Contributing
 ===
