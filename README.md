@@ -118,6 +118,7 @@ To Do
 ===
 Here's what we're planning on working on with Payday in the near future:
 
+* Let some folks use it for a bit.
 * Release 1.0!
 
 * Actually get a designer to style the invoices.
