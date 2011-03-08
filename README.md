@@ -49,6 +49,10 @@ In your controller:
 
 Be sure to restart your server after you edit the mime_types initializer. The updating setting won't take effect until you do.
 
+Example Application
+===
+There's an example Rails application running on Heroku at [http://payday-example.heroku.com].
+
 Contributing
 ===
 Payday is pretty young, so there's still a good bit of work to be done. Feel free to fork the project, make some changes, and send a pull request. If you're unsure about what to work on, send me a message on GitHub. I'd love the help!
