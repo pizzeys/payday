@@ -27,7 +27,7 @@ Example:
 
 Documentation
 ===
-Documentation for the latest version of Payday is available at [rdoc.info](http://rdoc.info/github/commondream/payday/v1.0.0beta1/frames).
+Documentation for the latest version of Payday is available at [rdoc.info](http://rdoc.info/github/commondream/payday/v1.0.0beta2/frames).
 
 Customizing Your Logo and Company Name
 ===
