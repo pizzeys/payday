@@ -2,6 +2,10 @@
 # expects that a +line_items+ method containing an Enumerable of {Payday::LineItem} compatible
 # elements exists. Those LineItem objects primarily need to include quantity, price, and description methods.
 #
+# The +bill_to+ method should always be overwritten by your class. Otherwise, it'll say that your invoice should
+# be billed to Goofy McGoofison. +ship_to+ is also available, but will not be used in rendered invoices if it
+# doesn't exist.
+#
 # Although not required, if a +tax_rate+ method exists, {Payday::Invoiceable} will use it to calculate tax
 # when generating an invoice. We include a simple tax method that calculates tax, but it's probably wiser
 # to override this in your class (our calculated tax won't be stored to a database by default, for example).
@@ -9,6 +13,11 @@
 # If the +due_on+ and +paid_at+ methods are available, {Payday::Invoiceable} will use them to show due dates and
 # paid dates, as well as stamps showing if the invoice is paid or due.
 module Payday::Invoiceable
+  
+  # Who the invoice is being sent to.
+  def bill_to
+    "Goofy McGoofison\nYour Invoice Doesn't\nHave It's Own BillTo Method"
+  end
   
   # Calculates the subtotal of this invoice by adding up all of the line items
   def subtotal
