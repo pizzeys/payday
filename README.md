@@ -34,7 +34,7 @@ Rendering Payday PDFs To The Web
 Payday's Invoiceable module includes methods for rendering pdfs to disk and for rendering them to a string. In a Rails controller, you can use the
 render to string method to render a pdf directly to the browser like this:
 
-In environment.rb:
+In config/initializers/mime_types.rb:
   
     Mime::Type.register 'application/pdf', :pdf
     
@@ -46,6 +46,8 @@ In your controller:
         send_data invoice.render_pdf, :filename => "Invoice #12.pdf", :type => "application/pdf", :disposition => :inline
       end
     end
+
+Be sure to restart your server after you edit the mime_types initializer. The updating setting won't take effect until you do.
 
 Contributing
 ===

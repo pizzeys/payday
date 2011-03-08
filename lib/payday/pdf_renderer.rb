@@ -32,10 +32,12 @@ module Payday
           stamp = "OVERDUE"
         end
 
-        pdf.bounding_box([200, pdf.cursor - 50], :width => pdf.bounds.width - 400) do
-          pdf.font("Helvetica-Bold") do
-            pdf.fill_color "cc0000"
-            pdf.text stamp, :align=> :center, :size => 25, :rotate => 15
+        if stamp
+          pdf.bounding_box([200, pdf.cursor - 50], :width => pdf.bounds.width - 400) do
+            pdf.font("Helvetica-Bold") do
+              pdf.fill_color "cc0000"
+              pdf.text stamp, :align=> :center, :size => 25, :rotate => 15
+            end
           end
         end
 
