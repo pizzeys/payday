@@ -102,7 +102,7 @@ In your controller:
       end
     end
 
-Be sure to restart your server after you edit the mime_types initializer. The updating setting won't take effect until you do.
+Be sure to restart your server after you edit the mime_types initializer. The updated setting won't take effect until you do.
 
 Examples
 ===
