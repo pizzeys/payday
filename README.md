@@ -49,9 +49,11 @@ In your controller:
 
 Be sure to restart your server after you edit the mime_types initializer. The updating setting won't take effect until you do.
 
-Example Application
+Examples
 ===
-There's an example Rails application running on Heroku at [http://payday-example.heroku.com](http://payday-example.heroku.com).
+Here's an [example PDF Invoice](https://github.com/downloads/commondream/payday/testing.pdf)
+
+There's also an example Rails application running on Heroku at [http://payday-example.heroku.com](http://payday-example.heroku.com). You can check out the source at [http://github.com/commondream/payday-example](http://github.com/commondream/payday-example).
 
 Contributing
 ===
