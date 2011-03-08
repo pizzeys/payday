@@ -86,11 +86,11 @@ module Payday
         end
 
         # Paid on
-        if defined?(invoice.paid_on) && invoice.paid_on
-          if invoice.paid_on.is_a?(Date)
-            paid_date = invoice.paid_on.strftime(Payday::Config.default.date_format)
+        if defined?(invoice.paid_at) && invoice.paid_at
+          if invoice.paid_at.is_a?(Date)
+            paid_date = invoice.paid_at.strftime(Payday::Config.default.date_format)
           else
-            paid_date = invoice.paid_on.to_s
+            paid_date = invoice.paid_at.to_s
           end
 
           table_data << [bold_cell(pdf, "Paid Date:"), bold_cell(pdf, paid_date, :align => :right)]
