@@ -41,7 +41,7 @@ module Payday::Invoiceable
   end
   
   def overdue?
-    defined?(:due_on) && due_on.is_a?(Date) && due_on < Date.today && !paid_on
+    defined?(:due_on) && due_on.is_a?(Date) && due_on < Date.today && !paid_at
   end
   
   def paid?

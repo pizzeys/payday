@@ -15,13 +15,12 @@ module Payday
       self.tax_rate = options[:tax_rate] || nil
       self.tax_description = options[:tax_description] || nil
       self.due_on = options[:due_on] || nil
-      self.paid_on = options[:paid_at] || nil
+      self.paid_at = options[:paid_at] || nil
     end
     
     # The tax rate that we're applying, as a BigDecimal    
     def tax_rate=(value)
       @tax_rate = BigDecimal.new(value.to_s)
     end
-    
   end
 end

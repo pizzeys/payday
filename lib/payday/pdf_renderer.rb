@@ -21,10 +21,17 @@ module Payday
         # set up some default styling
         pdf.font_size(8)
 
-        # render the logo
-        logo_info = pdf.image(invoice_or_default(invoice, :invoice_logo), :at => pdf.bounds.top_left, :fit => [200, 100])
+        stamp(invoice, pdf)
+        company_banner(invoice, pdf)
+        bill_to_ship_to(invoice, pdf)
+        invoice_details(invoice, pdf)
+        line_items_table(invoice, pdf)
+        notes(invoice, pdf)
 
-        # render the stamp
+        pdf
+      end
+      
+      def self.stamp(invoice, pdf)
         stamp = nil
         if invoice.paid?
           stamp = "PAID"
@@ -42,7 +49,12 @@ module Payday
         end
 
         pdf.fill_color "000000"
-
+      end
+      
+      def self.company_banner(invoice, pdf)
+        # render the logo
+        logo_info = pdf.image(invoice_or_default(invoice, :invoice_logo), :at => pdf.bounds.top_left, :fit => [200, 100])
+        
         # render the company details
         table_data = []
         table_data << [bold_cell(pdf, invoice_or_default(invoice, :company_name), :size => 12)]
@@ -51,12 +63,15 @@ module Payday
         pdf.bounding_box([pdf.bounds.width - table.width, pdf.bounds.top], :width => table.width, :height => table.height) do
           table.draw
         end
-
+        
+        pdf.move_cursor_to(pdf.bounds.top - logo_info.scaled_height - 20)
+      end
+      
+      def self.bill_to_ship_to(invoice, pdf)
         bill_to_cell_style = { :borders => [], :padding => [2, 0]}
         bill_to_ship_to_bottom = 0
         
         # render bill to
-        pdf.move_cursor_to(pdf.bounds.top - logo_info.scaled_height - 20)
         pdf.float do
           table = pdf.table([[bold_cell(pdf, "Bill To")], [invoice.bill_to]], :column_widths => [200], :cell_style => bill_to_cell_style)
           bill_to_ship_to_bottom = pdf.cursor
@@ -74,9 +89,11 @@ module Payday
 
         # make sure we start at the lower of the bill_to or ship_to details
         bill_to_ship_to_bottom = pdf.cursor if pdf.cursor < bill_to_ship_to_bottom
-
-        # render the invoice details
         pdf.move_cursor_to(bill_to_ship_to_bottom - 20)
+      end
+      
+      def self.invoice_details(invoice, pdf)
+        # invoice details
         table_data = []
 
         # invoice number
@@ -109,8 +126,9 @@ module Payday
         if table_data.length > 0
           pdf.table(table_data, :cell_style => { :borders => [], :padding => 1 })
         end
-
-        # render the line items
+      end
+      
+      def self.line_items_table(invoice, pdf)
         table_data = []
         table_data << [bold_cell(pdf, "Description", :borders => []), 
             bold_cell(pdf, "Unit Price", :align => :center, :borders => []), 
@@ -133,8 +151,9 @@ module Payday
 
           column_widths = natural
         end
-
-        # render the totals lines
+      end
+      
+      def self.totals_lines(invoice, pdf)
         table_data = []
         table_data << [bold_cell(pdf, "Subtotal:"), cell(pdf, number_to_currency(invoice.subtotal), :align => :right)]
         table_data << [bold_cell(pdf, "Tax:"), cell(pdf, number_to_currency(invoice.tax), :align => :right)]
@@ -144,8 +163,9 @@ module Payday
         pdf.bounding_box([pdf.bounds.width - table.width, pdf.cursor], :width => table.width, :height => table.height + 2) do
           table.draw
         end
-
-        # render the notes
+      end
+      
+      def self.notes(invoice, pdf)
         if defined?(invoice.notes) && invoice.notes
           pdf.move_cursor_to(pdf.cursor - 30)
           pdf.font("Helvetica-Bold") do
@@ -157,10 +177,8 @@ module Payday
           pdf.move_cursor_to(pdf.cursor - 10)
           pdf.text(invoice.notes.to_s)
         end
-        
-        pdf
       end
-    
+      
       def self.invoice_or_default(invoice, property)
         if invoice.respond_to?(property) && invoice.send(property)
           invoice.send(property)
