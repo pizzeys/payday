@@ -26,6 +26,7 @@ module Payday
         bill_to_ship_to(invoice, pdf)
         invoice_details(invoice, pdf)
         line_items_table(invoice, pdf)
+        totals_lines(invoice, pdf)
         notes(invoice, pdf)
 
         pdf
