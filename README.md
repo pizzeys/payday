@@ -42,7 +42,7 @@ Example:
 Using Payday with ActiveRecord Objects (or any other objects, for that matter)
 ===
 
-Payday focuses on two main objects, an invoice and a line item, so to Payday with ActiveRecord you'll want to create your own classes for those objects. We include the Payday::Invoiceable and Payday::LineItemable modules to help out with that.
+Payday focuses on two main objects, an invoice and a line item, so to use Payday with ActiveRecord you'll want to create your own classes for those objects. We include the Payday::Invoiceable and Payday::LineItemable modules to help out with that.
 
 Here's the simplest possible implementation of a custom invoice and line item with Payday:
 
