@@ -2,6 +2,17 @@ Payday!
 ===
 Payday is a library for rendering invoices. At present it supports rendering invoices to pdfs, but we're planning on adding support for other formats in the near future.
 
+Installing
+===
+Payday is available as a Rubygem, so installing it is as easy as running:
+
+    gem install payday --pre
+
+Or, using bundler:
+
+    gem "payday"
+
+
 Using Payday
 ===
 It's pretty easy to use Payday with the built in objects. We include the Invoice and LineItem classes, and with them you can get started pretty quickly.
