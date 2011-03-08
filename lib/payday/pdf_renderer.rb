@@ -53,24 +53,30 @@ module Payday
         end
 
         bill_to_cell_style = { :borders => [], :padding => [2, 0]}
-
+        bill_to_ship_to_bottom = 0
+        
         # render bill to
         pdf.move_cursor_to(pdf.bounds.top - logo_info.scaled_height - 20)
         pdf.float do
-          pdf.table([[bold_cell(pdf, "Bill To")], [invoice.bill_to]], :column_widths => [200], :cell_style => bill_to_cell_style)
+          table = pdf.table([[bold_cell(pdf, "Bill To")], [invoice.bill_to]], :column_widths => [200], :cell_style => bill_to_cell_style)
+          bill_to_ship_to_bottom = pdf.cursor
         end
 
         # render ship to
         if defined?(invoice.ship_to)
           table = pdf.make_table([[bold_cell(pdf, "Ship To")], [invoice.ship_to]], :column_widths => [200],
               :cell_style => bill_to_cell_style)
+          
           pdf.bounding_box([pdf.bounds.width - table.width, pdf.cursor], :width => table.width, :height => table.height + 2) do
             table.draw
           end
         end
 
+        # make sure we start at the lower of the bill_to or ship_to details
+        bill_to_ship_to_bottom = pdf.cursor if pdf.cursor < bill_to_ship_to_bottom
+
         # render the invoice details
-        pdf.move_cursor_to(pdf.cursor - 20)
+        pdf.move_cursor_to(bill_to_ship_to_bottom - 20)
         table_data = []
 
         # invoice number
@@ -111,7 +117,7 @@ module Payday
             bold_cell(pdf, "Quantity", :align => :center, :borders => []), 
             bold_cell(pdf, "Amount", :align => :center, :borders => [])]
         invoice.line_items.each do |line|
-          table_data << [line.description, number_to_currency(line.price), line.quantity,
+          table_data << [line.description, number_to_currency(line.price), line.quantity.to_s,
               number_to_currency(line.amount)]
         end
 
