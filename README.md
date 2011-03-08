@@ -135,6 +135,10 @@ Here's what we're planning on working on with Payday in the near future:
 * Add page numbers
 * Ability to render invoice to html for web viewing
 
+Acknowledgements
+===
+This wouldn't be possible without the amazing [Prawn](http://prawn.majesticseacreature.com) gem and the team behind it.
+
 License
 ===
 Copyright (C) 2011 by Alan Johnson
