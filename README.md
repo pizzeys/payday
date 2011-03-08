@@ -25,6 +25,10 @@ Example:
     i.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
     i.render_pdf_to_file("/path/to_file.pdf")
 
+Documentation
+===
+Documentation for the latest version of Payday is available at [rdoc.info](http://rdoc.info/github/commondream/payday/v1.0.0beta1/frames).
+
 Customizing Your Logo and Company Name
 ===
 Check out Payday::Config to customize your company's name, details, and logo.
