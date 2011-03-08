@@ -20,10 +20,10 @@ It's pretty easy to use Payday with the built in objects. We include the Invoice
 Example:
 
     invoice = Payday::Invoice.new(:invoice_number => 12)
-    i.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
-    i.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
-    i.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
-    i.render_pdf_to_file("/path/to_file.pdf")
+    invoice.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
+    invoice.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
+    invoice.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
+    invoice.render_pdf_to_file("/path/to_file.pdf")
 
 Documentation
 ===
@@ -106,7 +106,7 @@ Be sure to restart your server after you edit the mime_types initializer. The up
 
 Examples
 ===
-Here's an [example PDF Invoice](https://github.com/downloads/commondream/payday/testing.pdf)
+Here's an [example PDF Invoice](https://github.com/downloads/commondream/payday/example.pdf)
 
 There's also an example Rails application running on Heroku at [http://payday-example.heroku.com](http://payday-example.heroku.com). You can check out the source at [http://github.com/commondream/payday-example](http://github.com/commondream/payday-example).
 

@@ -107,7 +107,7 @@ module Payday
       3.times do
         i.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
         i.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
-        i.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
+        i.line_items << LineItem.new(:price => 5, :quantity => 200.0, :description => "Hats")
       end
 
       assert_not_nil i.render_pdf
