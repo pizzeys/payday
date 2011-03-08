@@ -4,7 +4,7 @@ module Payday
   class Invoice
     include Payday::Invoiceable
     
-    attr_accessor :invoice_number, :bill_to, :ship_to, :notes, :line_items, :tax_rate, :tax_description, :due_on, :paid_at
+    attr_accessor :invoice_number, :bill_to, :ship_to, :notes, :line_items, :tax_rate, :tax_description, :due_at, :paid_at
     
     def initialize(options =  {})
       self.invoice_number = options[:invoice_number] || nil
@@ -14,7 +14,7 @@ module Payday
       self.line_items = options[:line_items] || []
       self.tax_rate = options[:tax_rate] || nil
       self.tax_description = options[:tax_description] || nil
-      self.due_on = options[:due_on] || nil
+      self.due_at = options[:due_at] || nil
       self.paid_at = options[:paid_at] || nil
     end
     

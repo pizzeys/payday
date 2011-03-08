@@ -35,7 +35,7 @@ In a new migration:
 
     create_table :invoices do |t|
       # invoices will work without anything but bill_to, but there are quite a few options for the fields you can save, like ship_to
-      # due_on, and paid_at
+      # due_at, and paid_at
       t.string bill_to
       
       t.timestamps
@@ -103,8 +103,6 @@ To Do
 ===
 Here's what we're planning on working on with Payday in the near future:
 
-* Document how to use with ActiveRecord
-* Change due_on to due_at
 * Release 1.0!
 
 * Actually get a designer to style the invoices.

@@ -62,12 +62,12 @@ module Payday
     end
     
     test "overdue? is false when past date and unpaid" do
-      i = Invoice.new(:due_on => Date.today - 1)
+      i = Invoice.new(:due_at => Date.today - 1)
       assert i.overdue?
     end
     
     test "overdue? is true when past date but paid" do
-      i = Invoice.new(:due_on => Date.today - 1, :paid_at => Date.today)
+      i = Invoice.new(:due_at => Date.today - 1, :paid_at => Date.today)
       assert !i.overdue?
     end
     
@@ -86,7 +86,7 @@ module Payday
       assert !File.exists?("tmp/testing.pdf")
       
       i = Invoice.new(:tax_rate => 0.1, :notes => "These are some crazy awesome notes!", :invoice_number => 12,
-          :due_on => Date.civil(2011, 1, 22), :paid_at => Date.civil(2012, 2, 22),
+          :due_at => Date.civil(2011, 1, 22), :paid_at => Date.civil(2012, 2, 22),
           :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222", :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229")
       
       3.times do
@@ -101,7 +101,7 @@ module Payday
     
     test "rendering to string" do
       i = Invoice.new(:tax_rate => 0.1, :notes => "These are some crazy awesome notes!", :invoice_number => 12,
-          :due_on => Date.civil(2011, 1, 22), :paid_at => Date.civil(2012, 2, 22),
+          :due_at => Date.civil(2011, 1, 22), :paid_at => Date.civil(2012, 2, 22),
           :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222", :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229")
 
       3.times do

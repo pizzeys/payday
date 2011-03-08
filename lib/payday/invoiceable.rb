@@ -10,7 +10,7 @@
 # when generating an invoice. We include a simple tax method that calculates tax, but it's probably wiser
 # to override this in your class (our calculated tax won't be stored to a database by default, for example).
 #
-# If the +due_on+ and +paid_at+ methods are available, {Payday::Invoiceable} will use them to show due dates and
+# If the +due_at+ and +paid_at+ methods are available, {Payday::Invoiceable} will use them to show due dates and
 # paid dates, as well as stamps showing if the invoice is paid or due.
 module Payday::Invoiceable
   
@@ -41,7 +41,7 @@ module Payday::Invoiceable
   end
   
   def overdue?
-    defined?(:due_on) && due_on.is_a?(Date) && due_on < Date.today && !paid_at
+    defined?(:due_at) && ((due_at.is_a?(Date) && due_at < Date.today) || (due_at.is_a?(Time) < Time.now))  && !paid_at
   end
   
   def paid?

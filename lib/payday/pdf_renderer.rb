@@ -103,11 +103,11 @@ module Payday
         end
 
         # Due on
-        if defined?(invoice.due_on) && invoice.due_on
-          if invoice.due_on.is_a?(Date)
-            due_date = invoice.due_on.strftime(Payday::Config.default.date_format)
+        if defined?(invoice.due_at) && invoice.due_at
+          if invoice.due_at.is_a?(Date) || invoice.due_at.is_a?(Time)
+            due_date = invoice.due_at.strftime(Payday::Config.default.date_format)
           else
-            due_date = invoice.due_on.to_s
+            due_date = invoice.due_at.to_s
           end
 
           table_data << [bold_cell(pdf, "Due Date:"), bold_cell(pdf, due_date, :align => :right)]

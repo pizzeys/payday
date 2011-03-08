@@ -1,3 +1,6 @@
+# This is Payday!
 module Payday
-  VERSION = "1.0.0beta1"
+  
+  # Current Version
+  VERSION = "1.0.0beta2"
 end
