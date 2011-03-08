@@ -27,7 +27,47 @@ Example:
 Using Payday with ActiveRecord Objects (or any other objects, for that matter)
 ===
 
-TODO
+Payday focuses on two main objects, an invoice and a line item, so to Payday with ActiveRecord you'll want to create your own classes for those objects. We include the Payday::Invoiceable and Payday::LineItemable modules to help out with that.
+
+Here's the simplest possible implementation of a custom invoice and line item with Payday:
+
+In a new migration:
+
+    create_table :invoices do |t|
+      # invoices will work without anything but bill_to, but there are quite a few options for the fields you can save, like ship_to
+      # due_on, and paid_at
+      t.string bill_to
+      
+      t.timestamps
+    end
+    
+    create_table :line_items do |t|
+      t.decimal :price
+      t.string :description
+      t.integer :quantity     # can also be :decimal or :float - just needs to be numeric
+      
+      t.integer :invoice_id
+      
+      t.timestamps
+    end
+    
+In app/models/invoice.rb:
+
+    class Invoice < ActiveRecord::Base
+      include Payday::Invoiceable
+
+      has_many :line_items
+    end
+    
+In app/models/line_item.rb:
+
+    class LineItem < ActiveRecord::Base
+      include Payday::LineItemable
+
+      belongs_to :invoice
+    end
+
+For a bit more fleshed out example, be sure to check out [http://github.com/commondream/payday-example](http://github.com/commondream/payday-example).
 
 Rendering Payday PDFs To The Web
 ===
@@ -63,10 +103,11 @@ To Do
 ===
 Here's what we're planning on working on with Payday in the near future:
 
-* Package as gem
 * Document how to use with ActiveRecord
+* Change due_on to due_at
 * Release 1.0!
 
+* Actually get a designer to style the invoices.
 * Add support for currencies other than USD
 * Add support for Money gem or BigDecimal or general numerics (right now we support BigDecimal and general numerics)
 * Add support for blank line items
