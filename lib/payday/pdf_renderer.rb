@@ -16,11 +16,11 @@ module Payday
   
     private
       def self.pdf(invoice)
-        pdf = Prawn::Document.new
+        pdf = Prawn::Document.new(:page_size => invoice_or_default(invoice, :page_size))
 
         # set up some default styling
         pdf.font_size(8)
-
+        
         stamp(invoice, pdf)
         company_banner(invoice, pdf)
         bill_to_ship_to(invoice, pdf)
