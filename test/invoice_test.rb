@@ -71,6 +71,11 @@ module Payday
       assert !i.overdue?
     end
     
+    test "overdue? when due_at is a time" do
+      i = Invoice.new(:due_at => Time.parse("Jan 1 14:33:20 GMT 2011"))
+      assert i.overdue?
+    end
+    
     test "paid is false when not paid" do
       i = Invoice.new
       assert !i.paid?

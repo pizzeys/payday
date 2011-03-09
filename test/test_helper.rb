@@ -1,6 +1,8 @@
 require File.join(File.dirname(__FILE__), "..", "lib", "payday")
 
 require 'test/unit'
+require 'date'
+require 'time'
 
 # Shamelessly ripped from jm's context library: https://github.com/jm/context/blob/master/lib/context/test.rb
 class Test::Unit::TestCase
