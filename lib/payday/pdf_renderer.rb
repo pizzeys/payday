@@ -54,7 +54,7 @@ module Payday
       
       def self.company_banner(invoice, pdf)
         # render the logo
-        logo_info = pdf.image(invoice_or_default(invoice, :invoice_logo), :at => pdf.bounds.top_left, :fit => [200, 100])
+        logo_info = pdf.image(invoice_or_default(invoice, :invoice_logo), :at => pdf.bounds.top_left)
         
         # render the company details
         company_details = invoice_or_default(invoice, :company_details)
