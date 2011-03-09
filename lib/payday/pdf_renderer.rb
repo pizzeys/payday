@@ -57,9 +57,12 @@ module Payday
         logo_info = pdf.image(invoice_or_default(invoice, :invoice_logo), :at => pdf.bounds.top_left, :fit => [200, 100])
         
         # render the company details
+        company_details = invoice_or_default(invoice, :company_details)
+        company_details = company_details.lines.inject("") { |combined, line| combined << line.strip }
+        
         table_data = []
-        table_data << [bold_cell(pdf, invoice_or_default(invoice, :company_name), :size => 12)]
-        table_data << [invoice_or_default(invoice, :company_details)]
+        table_data << [bold_cell(pdf, invoice_or_default(invoice, :company_name).strip, :size => 12)]
+        table_data << [company_details]
         table = pdf.make_table(table_data, :cell_style => { :borders => [], :padding => [2, 0] })
         pdf.bounding_box([pdf.bounds.width - table.width, pdf.bounds.top], :width => table.width, :height => table.height) do
           table.draw
