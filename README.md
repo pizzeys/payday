@@ -128,7 +128,6 @@ Here's what we're planning on working on with Payday in the near future:
 * Add support for indented line items
 * Apply different tax rates to different line items
 * Add support for shipping either pre or post tax
-* Add ability to set pdf document size to something other than 8.5 x 11
 * Add invoice_details has for stuff under the invoice number
 * Add ability to show skus or product ids on each line item
 
