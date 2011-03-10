@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{Payday is a library for rendering invoices. At present it supports rendering invoices to pdfs, but we're planning on adding support for other formats in the near future.}
 
   s.add_dependency("prawn", "~> 0.11.1.pre")
+  s.add_dependency("money", "~> 3.6.1")
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

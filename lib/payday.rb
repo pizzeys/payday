@@ -2,6 +2,7 @@
 require 'date'
 require 'bigdecimal'
 require 'prawn'
+require 'money'
 
 require File.join(File.dirname(__FILE__), "payday", "version")
 require File.join(File.dirname(__FILE__), "payday", "config")

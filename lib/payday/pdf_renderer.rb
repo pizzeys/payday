@@ -139,8 +139,8 @@ module Payday
             bold_cell(pdf, "Quantity", :align => :center, :borders => []), 
             bold_cell(pdf, "Amount", :align => :center, :borders => [])]
         invoice.line_items.each do |line|
-          table_data << [line.description, number_to_currency(line.price), BigDecimal.new(line.quantity.to_s).to_s("F"),
-              number_to_currency(line.amount)]
+          table_data << [line.description, number_to_currency(line.price, invoice), BigDecimal.new(line.quantity.to_s).to_s("F"),
+              number_to_currency(line.amount, invoice)]
         end
 
         pdf.move_cursor_to(pdf.cursor - 20)
@@ -159,10 +159,10 @@ module Payday
       
       def self.totals_lines(invoice, pdf)
         table_data = []
-        table_data << [bold_cell(pdf, "Subtotal:"), cell(pdf, number_to_currency(invoice.subtotal), :align => :right)]
-        table_data << [bold_cell(pdf, "Tax:"), cell(pdf, number_to_currency(invoice.tax), :align => :right)]
+        table_data << [bold_cell(pdf, "Subtotal:"), cell(pdf, number_to_currency(invoice.subtotal, invoice), :align => :right)]
+        table_data << [bold_cell(pdf, "Tax:"), cell(pdf, number_to_currency(invoice.tax, invoice), :align => :right)]
         table_data << [bold_cell(pdf, "Total:", :size => 12), 
-            cell(pdf, number_to_currency(invoice.total), :size => 12, :align => :right)]
+            cell(pdf, number_to_currency(invoice.total, invoice), :size => 12, :align => :right)]
         table = pdf.make_table(table_data, :cell_style => { :borders => [] })
         pdf.bounding_box([pdf.bounds.width - table.width, pdf.cursor], :width => table.width, :height => table.height + 2) do
           table.draw
@@ -205,8 +205,9 @@ module Payday
         number.to_s.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1#{delimiter}")
       end
     
-      def self.number_to_currency(number)
-        number_with_delimiter(sprintf("$%.02f", number))
+      # Converts this number to a formatted currency string
+      def self.number_to_currency(number, invoice)
+        number.to_money(invoice_or_default(invoice, :currency)).format
       end
     
       def self.max_cell_width(cell_proxy)

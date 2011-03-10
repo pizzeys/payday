@@ -16,6 +16,7 @@ module Payday
         self.company_name = "Awesome Corp"
         self.company_details = "awesomecorp@commondream.net"
         self.date_format = "%B %e, %Y"
+        self.currency = "USD"
       end
   end
 end
