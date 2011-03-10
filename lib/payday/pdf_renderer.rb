@@ -58,7 +58,7 @@ module Payday
         
         # render the company details
         company_details = invoice_or_default(invoice, :company_details)
-        company_details = company_details.lines.inject("") { |combined, line| combined << line.strip }
+        company_details = company_details.lines.inject("") { |combined, line| combined << line.strip + '\n' }
         
         table_data = []
         table_data << [bold_cell(pdf, invoice_or_default(invoice, :company_name).strip, :size => 12)]
