@@ -115,6 +115,11 @@ Contributing
 ===
 Payday is pretty young, so there's still a good bit of work to be done. I highly recommend sending me a message on GitHub before making too many changes, just to make sure that two folks aren't doing the same work, but beyond that feel free to fork the project, make some changes, and send a pull request. If you're unsure about what to work on but would like to help, send me a message on GitHub. I'd love the help!
 
+We've had some awesome contributers:
+
+* Sam Pizzey (pizzeys)
+* Andrew Nordman (cadwallion)
+
 To Do
 ===
 Here's what we're planning on working on with Payday in the near future:
