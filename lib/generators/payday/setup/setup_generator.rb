@@ -15,7 +15,7 @@ module Payday
     
     argument :invoice_name, :type => :string, :default => "Invoice"
     argument :line_item_name, :type => :string, :default => "LineItem"
-    class_option :skip_migration, :description => "Does not create the migration file for invoicing", :type => :boolean
+    class_option :skip_migration, :desc => "Does not create the migration file for tables", :type => :boolean
     
     def generate_invoice_model
       template "invoice.rb", "app/models/#{invoice_name.underscore}.rb"
