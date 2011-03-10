@@ -29,9 +29,10 @@ Documentation
 ===
 Documentation for the latest version of Payday is available at [rdoc.info](http://rdoc.info/github/commondream/payday/v1.0.0beta5/frames).
 
-Customizing Your Logo and Company Name
+Customizing Your Invoice
 ===
-Check out Payday::Config to customize your company's name, details, and logo.
+Payday::Config includes quite a few options for customizing your invoices, such as options for customizing the logo and
+company details on the invoice.
 
 Example:
 
