@@ -112,7 +112,7 @@ There's also an example Rails application running on Heroku at [http://payday-ex
 
 Contributing
 ===
-Payday is pretty young, so there's still a good bit of work to be done. Feel free to fork the project, make some changes, and send a pull request. If you're unsure about what to work on, send me a message on GitHub. I'd love the help!
+Payday is pretty young, so there's still a good bit of work to be done. I highly recommend sending me a message on GitHub before making too many changes, just to make sure that two folks aren't doing the same work, but beyond that feel free to fork the project, make some changes, and send a pull request. If you're unsure about what to work on but would like to help, send me a message on GitHub. I'd love the help!
 
 To Do
 ===
@@ -122,7 +122,6 @@ Here's what we're planning on working on with Payday in the near future:
 * Release 1.0!
 
 * Actually get a designer to style the invoices.
-* Add support for currencies other than USD
 * Add support for Money gem or BigDecimal or general numerics (right now we support BigDecimal and general numerics)
 * Add support for blank line items
 * Add support for indented line items
