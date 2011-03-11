@@ -105,6 +105,30 @@ In your controller:
 
 Be sure to restart your server after you edit the mime_types initializer. The updated setting won't take effect until you do.
 
+I18n
+===
+Payday uses the i18n gem to provide support for custom labels and internationalized applications. You can change the default labels by
+adding a YAML file in the `config/locales` directory. Here are the default labels you can customize :
+  
+    payday:
+      status:
+        paid: PAID
+        overdue: OVERDUE
+      invoice:
+        bill_to: Bill To
+        ship_to: Ship To
+        invoice_no: "Invoice #:"
+        due_date: "Due Date:"
+        paid_date: "Paid Date:"
+        subtotal: "Subtotal:"
+        tax: "Tax:"
+        total: "Total:"
+      line_item:
+        description: Description
+        unit_price: Unit Price
+        quantity: Quantity
+        amount: Amount
+
 Examples
 ===
 Here's an [example PDF Invoice](https://github.com/downloads/commondream/payday/example.pdf)

@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency("prawn", "~> 0.11.1.pre")
   s.add_dependency("money", "~> 3.6.1")
+  s.add_dependency("i18n", "~> 0.5.0")
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
