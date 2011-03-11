@@ -108,7 +108,7 @@ Be sure to restart your server after you edit the mime_types initializer. The up
 I18n
 ===
 Payday uses the i18n gem to provide support for custom labels and internationalized applications. You can change the default labels by
-adding a YAML file in the `config/locales` directory. Here are the default labels you can customize :
+adding a YAML file in the `config/locales` directory of your Rails app. Here are the default labels you can customize :
   
     payday:
       status:
