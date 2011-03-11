@@ -141,8 +141,9 @@ Payday is pretty young, so there's still a good bit of work to be done. I highly
 
 We've had some awesome contributers:
 
-* Sam Pizzey (pizzeys)
-* Andrew Nordman (cadwallion)
+* Sam Pizzey ([pizzeys](http://github.com/pizzeys))
+* Andrew Nordman ([cadwallion](http://github.com/cadwallion))
+* Pierre Olivier Martel ([pomartel](http://github.com/pomartel))
 
 To Do
 ===
