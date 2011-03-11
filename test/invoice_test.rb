@@ -95,6 +95,8 @@ module Payday
           :due_at => Date.civil(2011, 1, 22), :paid_at => Date.civil(2012, 2, 22),
           :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222", :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229")
       
+      Payday::Config.default.company_details = "10 This Way\nManhattan, NY 10001\n800-111-2222\nawesome@awesomecorp.com"
+      
       3.times do
         i.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
         i.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
