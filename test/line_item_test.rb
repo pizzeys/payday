@@ -1,7 +1,7 @@
-require "test/test_helper"
+require File.expand_path("test/test_helper")
 
 module Payday
-  class LineItemTest < Test::Unit::TestCase
+  class LineItemTest < MiniTest::Unit::TestCase
     test "initializing with a price" do
       li = LineItem.new(:price => BigDecimal.new("20"))
       assert_equal BigDecimal.new("20"), li.price

@@ -77,14 +77,15 @@ module Payday
         
         # render bill to
         pdf.float do
-          table = pdf.table([[bold_cell(pdf, I18n.t('payday.invoice.bill_to', :default => "Bill To"))], [invoice.bill_to]], :column_widths => [200], :cell_style => bill_to_cell_style)
+          table = pdf.table([[bold_cell(pdf, I18n.t('payday.invoice.bill_to', :default => "Bill To"))], 
+              [invoice.bill_to]], :column_widths => [200], :cell_style => bill_to_cell_style)
           bill_to_ship_to_bottom = pdf.cursor
         end
 
         # render ship to
         if defined?(invoice.ship_to)
-          table = pdf.make_table([[bold_cell(pdf, I18n.t('payday.invoice.ship_to', :default => "Ship To"))], [invoice.ship_to]], :column_widths => [200],
-              :cell_style => bill_to_cell_style)
+          table = pdf.make_table([[bold_cell(pdf, I18n.t('payday.invoice.ship_to', :default => "Ship To"))], 
+              [invoice.ship_to]], :column_widths => [200], :cell_style => bill_to_cell_style)
           
           pdf.bounding_box([pdf.bounds.width - table.width, pdf.cursor], :width => table.width, :height => table.height + 2) do
             table.draw
@@ -102,7 +103,8 @@ module Payday
 
         # invoice number
         if defined?(invoice.invoice_number) && invoice.invoice_number
-          table_data << [bold_cell(pdf, I18n.t('payday.invoice.invoice_no', :default => "Invoice #:")), bold_cell(pdf, invoice.invoice_number.to_s, :align => :right)]
+          table_data << [bold_cell(pdf, I18n.t('payday.invoice.invoice_no', :default => "Invoice #:")), 
+              bold_cell(pdf, invoice.invoice_number.to_s, :align => :right)]
         end
 
         # Due on
@@ -113,7 +115,8 @@ module Payday
             due_date = invoice.due_at.to_s
           end
 
-          table_data << [bold_cell(pdf, I18n.t('payday.invoice.due_date', :default => "Due Date:")), bold_cell(pdf, due_date, :align => :right)]
+          table_data << [bold_cell(pdf, I18n.t('payday.invoice.due_date', :default => "Due Date:")), 
+              bold_cell(pdf, due_date, :align => :right)]
         end
 
         # Paid on
@@ -124,7 +127,8 @@ module Payday
             paid_date = invoice.paid_at.to_s
           end
 
-          table_data << [bold_cell(pdf, I18n.t('payday.invoice.paid_date', :default => "Paid Date:")), bold_cell(pdf, paid_date, :align => :right)]
+          table_data << [bold_cell(pdf, I18n.t('payday.invoice.paid_date', :default => "Paid Date:")), 
+              bold_cell(pdf, paid_date, :align => :right)]
         end
 
         if table_data.length > 0
@@ -144,7 +148,8 @@ module Payday
         end
 
         pdf.move_cursor_to(pdf.cursor - 20)
-        pdf.table(table_data, :width => pdf.bounds.width, :header => true, :cell_style => {:border_width => 0.5, :border_color => "cccccc", :padding => [5, 10]},
+        pdf.table(table_data, :width => pdf.bounds.width, :header => true, 
+            :cell_style => {:border_width => 0.5, :border_color => "cccccc", :padding => [5, 10]},
             :row_colors => ["dfdfdf", "ffffff"]) do
           # left align the number columns
           columns(1..3).rows(1..row_length - 1).style(:align => :right)
@@ -159,8 +164,10 @@ module Payday
       
       def self.totals_lines(invoice, pdf)
         table_data = []
-        table_data << [bold_cell(pdf, I18n.t('payday.invoice.subtotal', :default => "Subtotal:")), cell(pdf, number_to_currency(invoice.subtotal, invoice), :align => :right)]
-        table_data << [bold_cell(pdf, I18n.t('payday.invoice.tax', :default => "Tax:")), cell(pdf, number_to_currency(invoice.tax, invoice), :align => :right)]
+        table_data << [bold_cell(pdf, I18n.t('payday.invoice.subtotal', :default => "Subtotal:")), 
+            cell(pdf, number_to_currency(invoice.subtotal, invoice), :align => :right)]
+        table_data << [bold_cell(pdf, I18n.t('payday.invoice.tax', :default => "Tax:")), 
+            cell(pdf, number_to_currency(invoice.tax, invoice), :align => :right)]
         table_data << [bold_cell(pdf, I18n.t('payday.invoice.total', :default => "Total:"), :size => 12), 
             cell(pdf, number_to_currency(invoice.total, invoice), :size => 12, :align => :right)]
         table = pdf.make_table(table_data, :cell_style => { :borders => [] })

@@ -1,11 +1,11 @@
-require File.join(File.dirname(__FILE__), "..", "lib", "payday")
+require File.expand_path('lib/payday')
 
-require 'test/unit'
+require 'minitest/autorun'
 require 'date'
 require 'time'
 
 # Shamelessly ripped from jm's context library: https://github.com/jm/context/blob/master/lib/context/test.rb
-class Test::Unit::TestCase
+class MiniTest::Unit::TestCase
   class << self
     # Create a test method.  +name+ is a native-language string to describe the test
     # (e.g., no more +test_this_crazy_thing_with_underscores+).

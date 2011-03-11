@@ -1,7 +1,8 @@
-require "test/test_helper"
+require File.expand_path("test/test_helper")
 
 module Payday
-  class InvoiceTest < Test::Unit::TestCase
+  class InvoiceTest < MiniTest::Unit::TestCase
+    
     test "that setting values through the options hash on initialization works" do
       i = Invoice.new(:invoice_number => 20, :bill_to => "Here", :ship_to => "There",
           :notes => "These are some notes.",
@@ -115,7 +116,7 @@ module Payday
         i.line_items << LineItem.new(:price => 5, :quantity => 200.0, :description => "Hats")
       end
 
-      assert_not_nil i.render_pdf
+      refute_nil i.render_pdf
     end
   end
 end
