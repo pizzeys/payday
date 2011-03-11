@@ -60,8 +60,7 @@ module Payday
         table_data = []
         table_data << [bold_cell(pdf, invoice_or_default(invoice, :company_name).strip, :size => 12)]
         
-        company_details = invoice_or_default(invoice, :company_details)
-        company_details = company_details.lines.each { |line| table_data << [line] }
+        invoice_or_default(invoice, :company_details).lines.each { |line| table_data << [line] }
         
         table = pdf.make_table(table_data, :cell_style => { :borders => [], :padding => 0 })
         pdf.bounding_box([pdf.bounds.width - table.width, pdf.bounds.top], :width => table.width, :height => table.height + 5) do
