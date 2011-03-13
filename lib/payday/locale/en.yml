@@ -1,0 +1,19 @@
+en:
+  payday:
+    status:
+      paid: PAID
+      overdue: OVERDUE
+    invoice:
+      bill_to: Bill To
+      ship_to: Ship To
+      invoice_no: "Invoice #:"
+      due_date: "Due Date:"
+      paid_date: "Paid Date:"
+      subtotal: "Subtotal:"
+      tax: "Tax:"
+      total: "Total:"
+    line_item:
+      description: Description
+      unit_price: Unit Price
+      quantity: Quantity
+      amount: Amount

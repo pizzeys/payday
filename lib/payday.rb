@@ -7,6 +7,7 @@ require 'money'
 
 require 'payday/version'
 require 'payday/config'
+require 'payday/i18n'
 require 'payday/line_itemable'
 require 'payday/line_item'
 require 'payday/pdf_renderer'

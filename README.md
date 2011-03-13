@@ -107,27 +107,30 @@ Be sure to restart your server after you edit the mime_types initializer. The up
 
 I18n
 ===
-Payday uses the i18n gem to provide support for custom labels and internationalized applications. You can change the default labels by
-adding a YAML file in the `config/locales` directory of your Rails app. Here are the default labels you can customize :
+Payday uses the i18n gem to provide support for custom labels and internationalized applications. You can change the default labels by adding a YAML file in the `config/locales` directory of your Rails app. Here are the default labels you can customize:
   
-    payday:
-      status:
-        paid: PAID
-        overdue: OVERDUE
-      invoice:
-        bill_to: Bill To
-        ship_to: Ship To
-        invoice_no: "Invoice #:"
-        due_date: "Due Date:"
-        paid_date: "Paid Date:"
-        subtotal: "Subtotal:"
-        tax: "Tax:"
-        total: "Total:"
-      line_item:
-        description: Description
-        unit_price: Unit Price
-        quantity: Quantity
-        amount: Amount
+    en:
+      payday:
+        status:
+          paid: PAID
+          overdue: OVERDUE
+        invoice:
+          bill_to: Bill To
+          ship_to: Ship To
+          invoice_no: "Invoice #:"
+          due_date: "Due Date:"
+          paid_date: "Paid Date:"
+          subtotal: "Subtotal:"
+          tax: "Tax:"
+          total: "Total:"
+        line_item:
+          description: Description
+          unit_price: Unit Price
+          quantity: Quantity
+          amount: Amount
+          
+If you translate the invoice to your own language, please send me a copy of your locale.yml file so that we can include it with
+the main Payday distribution and other Payday users can enjoy the fruits of your labor.
 
 Examples
 ===
