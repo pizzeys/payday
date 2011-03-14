@@ -130,6 +130,12 @@ module Payday
               bold_cell(pdf, paid_date, :align => :right)]
         end
 
+        # loop through invoice_details and include them
+        invoice.each_detail do |key, value|
+          table_data << [bold_cell(pdf, key), 
+              bold_cell(pdf, value, :align => :right)]
+        end
+
         if table_data.length > 0
           pdf.table(table_data, :cell_style => { :borders => [], :padding => [1, 10, 1, 1] })
         end

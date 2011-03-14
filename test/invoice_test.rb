@@ -87,13 +87,39 @@ module Payday
       assert i.paid?
     end
     
+    test "iterating through invoice_details as two element arrays" do
+      i = Invoice.new(:invoice_details => [["Test", "Yes"], ["Awesome", "Absolutely"]])
+      details = []
+      i.each_detail do |key, value|
+        details << [key, value]
+      end
+      
+      assert_equal 2, details.length
+      assert details.include?(["Test", "Yes"])
+      assert details.include?(["Awesome", "Absolutely"])
+    end
+    
+    test "iterating through invoice_details as a hash" do
+      i = Invoice.new(:invoice_details => {"Test" => "Yes", "Awesome" => "Absolutely"})
+      details = []
+      i.each_detail do |key, value|
+        details << [key, value]
+      end
+      
+      assert_equal 2, details.length
+      assert details.include?(["Test", "Yes"])
+      assert details.include?(["Awesome", "Absolutely"])
+    end
+    
     test "rendering to file" do
       File.unlink("tmp/testing.pdf") if File.exists?("tmp/testing.pdf")
       assert !File.exists?("tmp/testing.pdf")
       
       i = Invoice.new(:tax_rate => 0.1, :notes => "These are some crazy awesome notes!", :invoice_number => 12,
           :due_at => Date.civil(2011, 1, 22), :paid_at => Date.civil(2012, 2, 22),
-          :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222", :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229")
+          :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222", 
+          :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229",
+          :invoice_details => {"Ordered By:" => "Alan Johnson", "Paid By:" => "Dude McDude"})
       
       Payday::Config.default.company_details = "10 This Way\nManhattan, NY 10001\n800-111-2222\nawesome@awesomecorp.com"
       
