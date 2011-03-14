@@ -1,0 +1,30 @@
+Description:
+	Creates the Invoice and LineItem models for Payday to use to 
+	render invoicing, and optionally a migration.
+		
+Usage:
+	Pass the name of the Invoice and LineItems to the generator to
+	establish the models and database migrations for you.  These 
+	parameters can be in camel-case or in under_scored format.
+	
+	If no invoice_name or line_item_name is passed, it will default
+	to Invoice and LineItem.
+	
+	If you wish to not create the migration and only have the
+	models generated for you, pass the --skip-migration flag to
+	the generator.
+	
+Examples:
+	`rails generate payday:setup`
+	
+	Will create Invoice and LineItem models with Payday
+	configured, and a database migration file to create
+	the tables and the minimum Payday needs to operate.
+		
+	`rails generate payday:setup --invoice-name=Bill --line_item-name=Actions`
+	
+	Will create Bill and Actions models with Payday's 
+	associations and configurations established, as well
+	as a database migration for the bills and actions
+	tables.
+
