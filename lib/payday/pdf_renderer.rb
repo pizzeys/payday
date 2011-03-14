@@ -219,11 +219,6 @@ module Payday
         cell(pdf, text, options)
       end
     
-      # from Rails, I think
-      def self.number_with_delimiter(number, delimiter=",")
-        number.to_s.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1#{delimiter}")
-      end
-    
       # Converts this number to a formatted currency string
       def self.number_to_currency(number, invoice)
         number.to_money(invoice_or_default(invoice, :currency)).format
