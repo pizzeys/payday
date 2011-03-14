@@ -13,16 +13,16 @@ module Payday
     
     source_root File.expand_path('../templates', __FILE__)
     
-    argument :invoice_name, :type => :string, :default => "Invoice"
-    argument :line_item_name, :type => :string, :default => "LineItem"
+    class_option :invoice_name, :type => :string, :default => "Invoice"
+    class_option :line_item_name, :type => :string, :default => "LineItem"
     class_option :skip_migration, :desc => "Does not create the migration file for tables", :type => :boolean
     
     def generate_invoice_model
-      template "invoice.rb", "app/models/#{invoice_name.underscore}.rb"
+      template "invoice.rb", "app/models/#{options.invoice_name.underscore}.rb"
     end
     
     def generate_line_item_model
-      template "line_item.rb", "app/models/#{line_item_name.underscore}.rb"
+      template "line_item.rb", "app/models/#{options.line_item_name.underscore}.rb"
     end
     
     def generate_migration
