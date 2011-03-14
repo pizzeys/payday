@@ -1,0 +1,19 @@
+es:
+  payday: 
+    status: 
+      overdue: RETRASADO
+      paid: PAGADO
+    invoice: 
+      bill_to: Facturar a
+      due_date: "Vencimiento:"
+      invoice_no: "Recibo #:"
+      paid_date: "Pagado en:"
+      ship_to: Enviar a
+      subtotal: "Subtotal:"
+      tax: "Impuesto:"
+      total: "Total:"
+    line_item: 
+      amount: Cantidad
+      description: Descripción
+      quantity: Cantidad
+      unit_price: Precio por Unidad
