@@ -173,6 +173,8 @@ module Payday
             cell(pdf, number_to_currency(invoice.subtotal, invoice), :align => :right)]
         table_data << [bold_cell(pdf, I18n.t('payday.invoice.tax', :default => "Tax:")), 
             cell(pdf, number_to_currency(invoice.tax, invoice), :align => :right)]
+        table_data << [bold_cell(pdf, I18n.t('payday.invoice.shipping', :default => "Shipping:")), 
+            cell(pdf, number_to_currency(invoice.shipping, invoice), :align => :right)]
         table_data << [bold_cell(pdf, I18n.t('payday.invoice.total', :default => "Total:"), :size => 12), 
             cell(pdf, number_to_currency(invoice.total, invoice), :size => 12, :align => :right)]
         table = pdf.make_table(table_data, :cell_style => { :borders => [] })
