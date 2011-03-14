@@ -1,0 +1,19 @@
+fr:
+  payday:
+    status:
+      paid: PAYÉ
+      overdue: EN RETARD
+    invoice:
+      bill_to: Facturé à
+      ship_to: Livré à
+      invoice_no: "Facture #:"
+      due_date: "Paiment dû le:"
+      paid_date: "Payé le:"
+      subtotal: "Sous-total:"
+      tax: "Taxe:"
+      total: "Total:"
+    line_item:
+      description: Description
+      unit_price: Prix unitaire
+      quantity: Quantité
+      amount: Montant
