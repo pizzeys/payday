@@ -161,8 +161,8 @@ Here's what we're planning on working on with Payday in the near future:
 * Add support for indented line items
 * Apply different tax rates to different line items
 * Add support for shipping either pre or post tax
-* Add invoice_details has for stuff under the invoice number
 * Add ability to show skus or product ids on each line item
+* Add ability to add fine print to invoices.
 
 * Add page numbers
 * Ability to render invoice to html for web viewing
