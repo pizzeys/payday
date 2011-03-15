@@ -129,9 +129,7 @@ module Payday
         i.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
       end
 
-      I18n.with_locale("es") do
-        i.render_pdf_to_file("tmp/testing.pdf")
-      end
+      i.render_pdf_to_file("tmp/testing.pdf")
       
       assert File.exists?("tmp/testing.pdf")
     end
