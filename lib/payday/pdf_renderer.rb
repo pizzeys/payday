@@ -28,6 +28,13 @@ module Payday
         line_items_table(invoice, pdf)
         totals_lines(invoice, pdf)
         notes(invoice, pdf)
+        
+        pdf.page_count.times do |i|
+          pdf.go_to_page(i+1)
+          pdf.bounding_box([pdf.bounds.right-50, pdf.bounds.bottom + 25], :width => 50) do
+            pdf.text "#{i+1} / #{pdf.page_count}"
+          end
+        end
 
         pdf
       end
@@ -218,11 +225,6 @@ module Payday
       def self.bold_cell(pdf, text, options = {})
         options[:font] = "Helvetica-Bold"
         cell(pdf, text, options)
-      end
-    
-      # from Rails, I think
-      def self.number_with_delimiter(number, delimiter=",")
-        number.to_s.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1#{delimiter}")
       end
     
       # Converts this number to a formatted currency string
