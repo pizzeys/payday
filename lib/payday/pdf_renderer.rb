@@ -29,12 +29,7 @@ module Payday
         totals_lines(invoice, pdf)
         notes(invoice, pdf)
         
-        pdf.page_count.times do |i|
-          pdf.go_to_page(i+1)
-          pdf.bounding_box([pdf.bounds.right-50, pdf.bounds.bottom + 25], :width => 50) do
-            pdf.text "#{i+1} / #{pdf.page_count}"
-          end
-        end
+        page_numbers(pdf)
 
         pdf
       end
@@ -207,6 +202,12 @@ module Payday
           pdf.stroke_line([0, pdf.cursor - 3, pdf.bounds.width, pdf.cursor - 3])
           pdf.move_cursor_to(pdf.cursor - 10)
           pdf.text(invoice.notes.to_s)
+        end
+      end
+      
+      def self.page_numbers(pdf)
+        if pdf.page_count > 1
+          pdf.number_pages("<page> / <total>", [pdf.bounds.right - 18, -15])
         end
       end
       
