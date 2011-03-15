@@ -7,14 +7,17 @@ module Payday
       i = Invoice.new(:invoice_number => 20, :bill_to => "Here", :ship_to => "There",
           :notes => "These are some notes.",
           :line_items => [LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")],
-          :tax_rate => 12.5, :tax_description => "Local Sales Tax, 12.5%")
+          :shipping_rate => 15.00, :shipping_description => "USPS Priority Mail:",
+          :tax_rate => 0.125, :tax_description => "Local Sales Tax, 12.5%")
           
       assert_equal 20, i.invoice_number
       assert_equal "Here", i.bill_to
       assert_equal "There", i.ship_to
       assert_equal "These are some notes.", i.notes
       assert_equal "Shirts", i.line_items[0].description
-      assert_equal BigDecimal.new("12.5"), i.tax_rate
+      assert_equal BigDecimal.new("15.00"), i.shipping_rate
+      assert_equal "USPS Priority Mail:", i.shipping_description
+      assert_equal BigDecimal.new("0.125"), i.tax_rate
       assert_equal "Local Sales Tax, 12.5%", i.tax_description
     end
         

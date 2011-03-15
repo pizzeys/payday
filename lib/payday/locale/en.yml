@@ -10,6 +10,7 @@ en:
       due_date: "Due Date:"
       paid_date: "Paid Date:"
       subtotal: "Subtotal:"
+      shipping: "Shipping:"
       tax: "Tax:"
       total: "Total:"
     line_item:
