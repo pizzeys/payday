@@ -116,7 +116,7 @@ module Payday
       assert !File.exists?("tmp/testing.pdf")
       
       i = Invoice.new(:tax_rate => 0.1, :notes => "These are some crazy awesome notes!", :invoice_number => 12,
-          :due_at => Date.civil(2011, 1, 22), :paid_at => Date.civil(2012, 2, 22),
+          :due_at => Date.civil(2011, 1, 22), #:paid_at => Date.civil(2012, 2, 22),
           :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222", 
           :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229",
           :invoice_details => {"Ordered By:" => "Alan Johnson", "Paid By:" => "Dude McDude"})
@@ -129,7 +129,10 @@ module Payday
         i.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
       end
 
-      i.render_pdf_to_file("tmp/testing.pdf")
+      I18n.with_locale("es") do
+        i.render_pdf_to_file("tmp/testing.pdf")
+      end
+      
       assert File.exists?("tmp/testing.pdf")
     end
     
