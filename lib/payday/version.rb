@@ -2,5 +2,5 @@
 module Payday
   
   # Current Version
-  VERSION = "1.0.0beta8"
+  VERSION = "1.0.0"
 end
