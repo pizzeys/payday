@@ -6,7 +6,7 @@ Installing
 ===
 Payday is available as a Rubygem, so installing it is as easy as running:
 
-    gem install payday --pre
+    gem install payday
 
 Or, using bundler:
 
