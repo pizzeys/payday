@@ -116,11 +116,8 @@ To Do
 ===
 Here's what we're planning on working on with Payday in the near future:
 
-* Let some folks use it for a bit.
-* Release 1.0!
-
 * Actually get a designer to style the invoices.
-* Add support for Money gem or BigDecimal or general numerics (right now we support BigDecimal and general numerics)
+* Add support for Money values
 * Add support for blank line items
 * Add support for indented line items
 * Apply different tax rates to different line items
@@ -128,7 +125,6 @@ Here's what we're planning on working on with Payday in the near future:
 * Add ability to show skus or product ids on each line item
 * Add ability to add fine print to invoices.
 
-* Add page numbers
 * Ability to render invoice to html for web viewing
 
 Acknowledgements
