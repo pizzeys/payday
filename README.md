@@ -36,7 +36,7 @@ company details on the invoice.
 
 Example:
 
-    Payday::Config.default.invoice_log = "/path/to/company/logo.png"
+    Payday::Config.default.invoice_logo = "/path/to/company/logo.png"
     Payday::Config.default.company_name = "Awesome Corp"
     Payday::Config.default.company_details = "10 This Way\nManhattan, NY 10001\n800-111-2222\nawesome@awesomecorp.com"
 
