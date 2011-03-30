@@ -84,7 +84,7 @@ module Payday
         end
 
         # render ship to
-        unless invoice.ship_to.nil?
+        if defined?(invoice.ship_to) && !invoice.ship_to.nil?
           table = pdf.make_table([[bold_cell(pdf, I18n.t('payday.invoice.ship_to', :default => "Ship To"))], 
               [invoice.ship_to]], :column_widths => [200], :cell_style => bill_to_cell_style)
           
