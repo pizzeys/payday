@@ -111,6 +111,8 @@ We've had some awesome contributers:
 * Sam Pizzey ([pizzeys](http://github.com/pizzeys))
 * Andrew Nordman ([cadwallion](http://github.com/cadwallion))
 * Pierre Olivier Martel ([pomartel](http://github.com/pomartel))
+* Matt Hoofman ([mhoofman](https://github.com/mhoofman))
+* Édouard Brière ([edouard](https://github.com/edouard))
 
 To Do
 ===
