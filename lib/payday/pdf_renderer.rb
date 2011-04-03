@@ -122,7 +122,7 @@ module Payday
 
         # Paid on
         if defined?(invoice.paid_at) && invoice.paid_at
-          if invoice.paid_at.is_a?(Date)
+          if invoice.paid_at.is_a?(Date) || invoice.due_at.is_a?(Time)
             paid_date = invoice.paid_at.strftime(Payday::Config.default.date_format)
           else
             paid_date = invoice.paid_at.to_s
