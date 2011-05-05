@@ -5,15 +5,17 @@ es:
       paid: PAGADO
     invoice: 
       bill_to: Facturar a
-      due_date: "Vencimiento:"
       invoice_no: "Recibo #:"
-      paid_date: "Pagado en:"
+      due_date: "Vencimiento:"
       ship_to: Enviar a
+      paid_date: "Pagado en:"
       subtotal: "Subtotal:"
+      shipping: "Envío:"
       tax: "Impuesto:"
       total: "Total:"
+      notes: "Notas"
     line_item: 
-      amount: Cantidad
       description: Descripción
-      quantity: Cantidad
       unit_price: Precio por Unidad
+      quantity: Cantidad
+      amount: Cantidad

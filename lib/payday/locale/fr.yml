@@ -10,8 +10,10 @@ fr:
       due_date: "Paiment dû le:"
       paid_date: "Payé le:"
       subtotal: "Sous-total:"
+      shipping: "Livraison:"
       tax: "Taxe:"
       total: "Total:"
+      notes: "Notes"
     line_item:
       description: Description
       unit_price: Prix unitaire
