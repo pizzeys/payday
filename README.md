@@ -113,6 +113,8 @@ We've had some awesome contributers:
 * Pierre Olivier Martel ([pomartel](http://github.com/pomartel))
 * Matt Hoofman ([mhoofman](https://github.com/mhoofman))
 * Édouard Brière ([edouard](https://github.com/edouard))
+* Jim Jones ([aantix](https://github.com/aantix))
+* Hussein Morsy ([husseinmorsy](https://github.com/husseinmorsy))
 
 To Do
 ===
