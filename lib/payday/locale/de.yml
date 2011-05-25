@@ -5,15 +5,17 @@ de:
       paid: BEZAHLT
     invoice: 
       bill_to: Rechnung an
-      due_date: "Fälligkeit:"
-      invoice_no: "Rechnungsnr.:"
-      paid_date: "Zahlungsdatum:"
       ship_to: Versenden an
+      invoice_no: "Rechnungsnr.:"
+      due_date: "Fälligkeit:"
+      paid_date: "Zahlungsdatum:"
       subtotal: "Zwischensumme:"
+      shipping: "Versand:"
       tax: "Steuern:"
       total: "Gesamt:"
+      notes: "Anmerkungen"
     line_item: 
-      amount: Betrag
       description: Beschreibung
-      quantity: Menge
       unit_price: Stückpreis
+      quantity: Menge
+      amount: Betrag
