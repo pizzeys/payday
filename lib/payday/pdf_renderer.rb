@@ -150,8 +150,11 @@ module Payday
             bold_cell(pdf, I18n.t('payday.line_item.quantity', :default => "Quantity"), :align => :center, :borders => []), 
             bold_cell(pdf, I18n.t('payday.line_item.amount', :default => "Amount"), :align => :center, :borders => [])]
         invoice.line_items.each do |line|
-          table_data << [line.description, number_to_currency(line.price, invoice), BigDecimal.new(line.quantity.to_s).to_s("F"),
-              number_to_currency(line.amount, invoice)]
+          puts "line item = #{line.display_quantity}"
+          table_data << [line.description,
+                         (line.display_price || number_to_currency(line.price, invoice)),
+                         (line.display_quantity || BigDecimal.new(line.quantity.to_s).to_s("F")),
+                         number_to_currency(line.amount, invoice)]
         end
 
         pdf.move_cursor_to(pdf.cursor - 20)
@@ -207,7 +210,7 @@ module Payday
       
       def self.page_numbers(pdf)
         if pdf.page_count > 1
-          pdf.number_pages("<page> / <total>", [pdf.bounds.right - 18, -15])
+          #pdf.number_pages("<page> / <total>", [pdf.bounds.right - 18, -15])
         end
       end
       

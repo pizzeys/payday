@@ -7,11 +7,13 @@ module Payday
   class LineItem
     include LineItemable
     
-    attr_accessor :description, :quantity, :price
+    attr_accessor :description, :quantity, :display_quantity, :display_price, :price
     
     # Initializes a new LineItem
     def initialize(options = {})
       self.quantity = options[:quantity] || "1"
+      self.display_quantity = options[:display_quantity]
+      self.display_price = options[:display_price]
       self.price = options[:price] || "0.00"
       self.description = options[:description] || ""
     end
