@@ -209,7 +209,7 @@ module Payday
 
       def self.page_numbers(pdf)
         if pdf.page_count > 1
-          pdf.number_pages("<page> / <total>", [pdf.bounds.right - 18, -15])
+          pdf.number_pages("<page> / <total>", :at => [pdf.bounds.right - 18, -15])
         end
       end
 
