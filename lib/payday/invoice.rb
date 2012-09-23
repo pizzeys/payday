@@ -1,12 +1,12 @@
 module Payday
-  
+
   # Basically just an invoice. Stick a ton of line items in it, add some details, and then render it out!
   class Invoice
     include Payday::Invoiceable
-    
+
     attr_accessor :invoice_number, :bill_to, :ship_to, :notes, :line_items, :shipping_rate, :shipping_description,
                   :tax_rate, :tax_description, :due_at, :paid_at, :currency, :invoice_details
-    
+
     def initialize(options =  {})
       self.invoice_number = options[:invoice_number] || nil
       self.bill_to = options[:bill_to] || nil
@@ -22,12 +22,12 @@ module Payday
       self.currency = options[:currency] || nil
       self.invoice_details = options[:invoice_details] || []
     end
-    
-    # The tax rate that we're applying, as a BigDecimal    
+
+    # The tax rate that we're applying, as a BigDecimal
     def tax_rate=(value)
       @tax_rate = BigDecimal.new(value.to_s)
     end
-    
+
     # Shipping rate
     def shipping_rate=(value)
       @shipping_rate = BigDecimal.new(value.to_s)

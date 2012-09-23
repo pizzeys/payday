@@ -56,7 +56,14 @@ module Payday
 
       def self.company_banner(invoice, pdf)
         # render the logo
-        logo_info = pdf.image(invoice_or_default(invoice, :invoice_logo), :at => pdf.bounds.top_left)
+        image = invoice_or_default(invoice, :invoice_logo)
+        if File.extname(image) == ".svg"
+          logo_info = pdf.svg(File.read(image), :at => pdf.bounds.top_left)
+          logo_height = logo_info[:height]
+        else
+          logo_info = pdf.image(image, :at => pdf.bounds.top_left)
+          logo_height = logo_info.scaled_height
+        end
 
         # render the company details
         table_data = []
@@ -69,7 +76,7 @@ module Payday
           table.draw
         end
 
-        pdf.move_cursor_to(pdf.bounds.top - logo_info.scaled_height - 20)
+        pdf.move_cursor_to(pdf.bounds.top - logo_height - 20)
       end
 
       def self.bill_to_ship_to(invoice, pdf)

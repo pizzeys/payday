@@ -2,6 +2,9 @@ require File.expand_path("test/test_helper")
 
 module Payday
   class InvoiceTest < MiniTest::Unit::TestCase
+    def setup
+      Config.default.reset
+    end
 
     test "that setting values through the options hash on initialization works" do
       i = Invoice.new(:invoice_number => 20, :bill_to => "Here", :ship_to => "There",
@@ -147,6 +150,23 @@ module Payday
         i.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
         i.line_items << LineItem.new(:price => 5, :quantity => 200.0, :description => "Hats")
       end
+
+      refute_nil i.render_pdf
+    end
+
+    test "rendering with an svg logo" do
+      Payday::Config.default.invoice_logo = "assets/tiger.svg"
+      i = Invoice.new(:tax_rate => 0.1, :notes => "These are some crazy awesome notes!", :invoice_number => 12,
+          :due_at => Date.civil(2011, 1, 22), :paid_at => Date.civil(2012, 2, 22),
+          :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222", :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229")
+
+      3.times do
+        i.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
+        i.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
+        i.line_items << LineItem.new(:price => 5, :quantity => 200.0, :description => "Hats")
+      end
+
+      i.render_pdf_to_file("tmp/testing.pdf")
 
       refute_nil i.render_pdf
     end

@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency("prawn", "~> 0.12.0")
   s.add_dependency("money", "~> 3.6.1")
+  s.add_dependency("prawn-svg", "~> 0.9.1")
   s.add_dependency("i18n", ">= 0.5.0")
 
   s.add_development_dependency("minitest")
