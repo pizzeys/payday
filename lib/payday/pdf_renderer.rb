@@ -57,11 +57,21 @@ module Payday
       def self.company_banner(invoice, pdf)
         # render the logo
         image = invoice_or_default(invoice, :invoice_logo)
+        height = nil
+        width = nil
+
+        # Handle images defined with a hash of options
+        if image.is_a?(Hash)
+          data = image
+          image = data[:filename]
+          width, height = data[:size].split("x").map(&:to_f)
+        end
+
         if File.extname(image) == ".svg"
-          logo_info = pdf.svg(File.read(image), :at => pdf.bounds.top_left)
+          logo_info = pdf.svg(File.read(image), :at => pdf.bounds.top_left, :width => width, :height => height)
           logo_height = logo_info[:height]
         else
-          logo_info = pdf.image(image, :at => pdf.bounds.top_left)
+          logo_info = pdf.image(image, :at => pdf.bounds.top_left, :width => width, :height => height)
           logo_height = logo_info.scaled_height
         end
 
