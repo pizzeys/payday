@@ -3,6 +3,7 @@ require File.expand_path("test/test_helper")
 module Payday
   class InvoiceTest < MiniTest::Unit::TestCase
     def setup
+      Dir.mkdir("tmp") unless File.exists?("tmp")
       Config.default.reset
     end
 
