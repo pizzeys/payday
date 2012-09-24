@@ -156,7 +156,7 @@ module Payday
     end
 
     test "rendering with an svg logo" do
-      Payday::Config.default.invoice_logo = { :filename => "assets/treehouse.svg", :size => "183.25x40.25" }
+      Payday::Config.default.invoice_logo = { :filename => "assets/tiger.svg", :size => "100x100" }
       i = Invoice.new(:tax_rate => 0.1, :notes => "These are some crazy awesome notes!", :invoice_number => 12,
           :due_at => Date.civil(2011, 1, 22), :paid_at => Date.civil(2012, 2, 22),
           :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222", :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229")
