@@ -37,10 +37,11 @@ module Payday
     end
 
     it "should calculate the correct tax amount, rounded to two decimal places" do
-      i = Invoice.new(:tax_rate => 0.1)
+      i = Invoice.new(:tax_rate => 0.1, :tax2_rate => 0.5)
       i.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
 
       expect(i.tax).to eq(BigDecimal.new("10"))
+      expect(i.tax2).to eq(BigDecimal.new("50"))
     end
 
     it "shouldn't apply taxes to invoices with a subtotal of 0 or a negative amount" do
@@ -51,7 +52,7 @@ module Payday
     end
 
     it "should calculate the total for an invoice correctly" do
-      i = Invoice.new(:tax_rate => 0.1)
+      i = Invoice.new(:tax_rate => 0.1, :tax2_rate => 0.2)
 
       # $100 in Pants
       i.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
@@ -62,7 +63,7 @@ module Payday
       # $1000 in Hats
       i.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
 
-      expect(i.total).to eq(BigDecimal.new("1234"))
+      expect(i.total).to eq(BigDecimal.new("1469"))
     end
 
     it "is overdue when it's past date and unpaid" do

@@ -197,6 +197,11 @@ module Payday
               invoice.tax_description.nil? ? I18n.t('payday.invoice.tax', :default => "Tax:") : invoice.tax_description),
               cell(pdf, number_to_currency(invoice.tax, invoice), :align => :right)]
         end
+        if invoice.tax2_rate > 0
+          table_data << [bold_cell(pdf,
+              invoice.tax2_description.nil? ? I18n.t('payday.invoice.tax2', :default => "Secondary Tax:") : invoice.tax2_description),
+              cell(pdf, number_to_currency(invoice.tax2, invoice), :align => :right)]
+        end
         if invoice.shipping_rate > 0
           table_data << [bold_cell(pdf,
               invoice.shipping_description.nil? ? I18n.t('payday.invoice.shipping', :default => "Shipping:") : invoice.shipping_description),
