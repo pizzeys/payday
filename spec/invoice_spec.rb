@@ -130,57 +130,64 @@ module Payday
         Config.default.reset
       end
 
-      it "should be able to render to a file" do
+      let(:invoice) { new_invoice(invoice_params) }
+      let(:invoice_params) { {} }
+
+      it "should render to a file" do
         File.unlink("tmp/testing.pdf") if File.exists?("tmp/testing.pdf")
 
-        i = Invoice.new(:tax_rate => 0.1, :notes => "These are some crazy awesome notes!", :invoice_number => 12,
-            :due_at => Date.civil(2011, 1, 22), #:paid_at => Date.civil(2012, 2, 22),
-            :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222",
-            :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229",
-            :invoice_details => {"Ordered By:" => "Alan Johnson", "Paid By:" => "Dude McDude"})
+        invoice.render_pdf_to_file("tmp/testing.pdf")
 
-        Payday::Config.default.company_details = "10 This Way\nManhattan, NY 10001\n800-111-2222\nawesome@awesomecorp.com"
-
-        30.times do
-          i.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
-          i.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
-          i.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
-        end
-
-        i.render_pdf_to_file("tmp/testing.pdf")
-
-        expect(File.exists?("tmp/testing.pdf")).to eq(true)
+        expect(File.exists?("tmp/testing.pdf")).to be_true
       end
 
-      it "should be able to render to a string" do
-        i = Invoice.new(:tax_rate => 0.1, :notes => "These are some crazy awesome notes!", :invoice_number => 12,
-          :due_at => Date.civil(2011, 1, 22), :paid_at => Date.civil(2012, 2, 22),
-          :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222", :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229")
+      context 'with some invoice details' do
+        let(:invoice_params) { {
+          :invoice_details => { "Ordered By:" => "Alan Johnson", "Paid By:" => "Dude McDude" }
+        } }
 
-        3.times do
-          i.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
-          i.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
-          i.line_items << LineItem.new(:price => 5, :quantity => 200.0, :description => "Hats")
+        it "should render an invoice correctly" do
+          Payday::Config.default.company_details = "10 This Way\nManhattan, NY 10001\n800-111-2222\nawesome@awesomecorp.com"
+
+          invoice.line_items += [
+            LineItem.new(:price => 20, :quantity => 5, :description => "Pants"),
+            LineItem.new(:price => 10, :quantity => 3, :description => "Shirts"),
+            LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
+          ] * 30
+
+          expect(invoice.render_pdf).to match_binary_asset 'testing.pdf'
         end
-
-        expect(i.render_pdf).not_to eq(nil)
       end
 
-      it "should be able to render with an svg logo" do
-        Payday::Config.default.invoice_logo = { :filename => "assets/tiger.svg", :size => "100x100" }
-        i = Invoice.new(:tax_rate => 0.1, :notes => "These are some crazy awesome notes!", :invoice_number => 12,
-          :due_at => Date.civil(2011, 1, 22), :paid_at => Date.civil(2012, 2, 22),
-          :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222", :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229")
-
-        3.times do
-          i.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
-          i.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
-          i.line_items << LineItem.new(:price => 5, :quantity => 200.0, :description => "Hats")
+      context 'paid, with an svg logo' do
+        before do
+          Payday::Config.default.invoice_logo = { :filename => "spec/assets/tiger.svg", :size => "100x100" }
         end
 
-        i.render_pdf_to_file("tmp/svg.pdf")
+        let(:invoice_params) { { :paid_at => Date.civil(2012, 2, 22) } }
 
-        expect(i.render_pdf).not_to eq(nil)
+        it 'should render an invoice correctly' do
+          invoice.line_items += [
+            LineItem.new(:price => 20, :quantity => 5, :description => "Pants"),
+            LineItem.new(:price => 10, :quantity => 3, :description => "Shirts"),
+            LineItem.new(:price => 5, :quantity => 200.0, :description => "Hats")
+          ] * 3
+
+          expect(invoice.render_pdf).to match_binary_asset 'svg.pdf'
+        end
+      end
+
+      def new_invoice(params = {})
+        default_params = {
+          :tax_rate => 0.1,
+          :notes => "These are some crazy awesome notes!",
+          :invoice_number => 12,
+          :due_at => Date.civil(2011, 1, 22),
+          :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222",
+          :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229"
+        }
+
+        Invoice.new(default_params.merge(params))
       end
     end
   end
