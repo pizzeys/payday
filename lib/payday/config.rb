@@ -19,7 +19,8 @@ module Payday
     #
     # Primarily intended for use in our tests.
     def reset
-        self.invoice_logo = File.join(File.dirname(__FILE__), "..", "..", "assets", "default_logo.png")
+        # TODO: Move into specs and make minimal configuration required (company name / details)
+        self.invoice_logo = File.join(File.dirname(__FILE__), "..", "..", "spec", "assets", "default_logo.png")
         self.company_name = "Awesome Corp"
         self.company_details = "awesomecorp@commondream.net"
         self.date_format = "%B %e, %Y"
