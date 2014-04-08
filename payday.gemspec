@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{git remote add origin git@github.com:commondream/payday.git}
   s.description = %q{Payday is a library for rendering invoices. At present it supports rendering invoices to pdfs, but we're planning on adding support for other formats in the near future.}
 
-  s.add_dependency("prawn", "~> 0.12.0")
+  s.add_dependency("prawn", "~> 1.0.0")
   s.add_dependency("money", "~> 3.6.1")
   s.add_dependency("prawn-svg", "~> 0.9.1")
   s.add_dependency("i18n", ">= 0.5.0")
