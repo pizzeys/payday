@@ -66,6 +66,10 @@ module Payday::Invoiceable
     defined?(:paid_at) && !!paid_at
   end
 
+  def refunded?
+    defined?(:refunded_at) && !!refunded_at
+  end
+
   # Renders this invoice to pdf as a string
   def render_pdf
     Payday::PdfRenderer.render(self)

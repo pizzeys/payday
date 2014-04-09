@@ -3,12 +3,14 @@ en:
     status:
       paid: PAID
       overdue: OVERDUE
+      refunded: REFUNDED
     invoice:
       bill_to: Bill To
       ship_to: Ship To
       invoice_no: "Invoice #:"
       due_date: "Due Date:"
       paid_date: "Paid Date:"
+      refunded_date: "Refunded Date:"
       subtotal: "Subtotal:"
       shipping: "Shipping:"
       tax: "Tax:"

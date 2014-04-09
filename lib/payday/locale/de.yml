@@ -3,6 +3,7 @@ de:
     status: 
       overdue: ÜBERFÄLLIG
       paid: BEZAHLT
+      refunded: ZURÜCKGEZAHLT
     invoice: 
       bill_to: Rechnung an
       ship_to: Versenden an
