@@ -78,6 +78,7 @@ Payday uses the i18n gem to provide support for custom labels and internationali
         status:
           paid: PAID
           overdue: OVERDUE
+          refunded: REFUNDED
         invoice:
           bill_to: Bill To
           ship_to: Ship To

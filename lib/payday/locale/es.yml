@@ -3,6 +3,7 @@ es:
     status: 
       overdue: RETRASADO
       paid: PAGADO
+      refunded: REINTEGRADO
     invoice: 
       bill_to: Facturar a
       invoice_no: "Recibo #:"
