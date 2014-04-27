@@ -10,8 +10,8 @@
 # when generating an invoice. We include a simple tax method that calculates tax, but it's probably wiser
 # to override this in your class (our calculated tax won't be stored to a database by default, for example).
 #
-# If the +due_at+ and +paid_at+ methods are available, {Payday::Invoiceable} will use them to show due dates and
-# paid dates, as well as stamps showing if the invoice is paid or due.
+# If the +due_at+, +paid_at+, and +refunded_at+ methods are available, {Payday::Invoiceable} will use them to show due dates,
+# paid dates, and refunded dates, as well as stamps showing if the invoice is paid or due.
 module Payday::Invoiceable
   
   # Who the invoice is being sent to.
@@ -54,6 +54,10 @@ module Payday::Invoiceable
     defined?(:due_at) && ((due_at.is_a?(Date) && due_at < Date.today) || (due_at.is_a?(Time) && due_at < Time.now))  && !paid_at
   end
   
+  def refunded?
+    defined?(:refunded_at) && !!refunded_at
+  end
+  
   def paid?
     defined?(:paid_at) && !!paid_at
   end
@@ -78,3 +82,4 @@ module Payday::Invoiceable
     end
   end
 end
+

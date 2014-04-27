@@ -36,7 +36,9 @@ module Payday
 
       def self.stamp(invoice, pdf)
         stamp = nil
-        if invoice.paid?
+        if invoice.refunded?
+          stamp = I18n.t 'payday.status.refunded', :default => "REFUNDED"
+        elsif invoice.paid?
           stamp = I18n.t 'payday.status.paid', :default => "PAID"
         elsif invoice.overdue?
           stamp = I18n.t 'payday.status.overdue', :default => "OVERDUE"
@@ -147,6 +149,18 @@ module Payday
 
           table_data << [bold_cell(pdf, I18n.t('payday.invoice.paid_date', :default => "Paid Date:")),
               bold_cell(pdf, paid_date, :align => :right)]
+        end
+
+        # Refunded on
+        if defined?(invoice.refunded_at) && invoice.refunded_at
+          if invoice.refunded_at.is_a?(Date) || invoice.due_at.is_a?(Time)
+            refunded_date = invoice.refunded_at.strftime(Payday::Config.default.date_format)
+          else
+            refunded_date = invoice.refunded_at.to_s
+          end
+
+          table_data << [bold_cell(pdf, I18n.t('payday.invoice.refunded_date', :default => "Refunded Date:")),
+              bold_cell(pdf, refunded_date, :align => :right)]
         end
 
         # loop through invoice_details and include them

@@ -80,6 +80,16 @@ module Payday
       expect(i.overdue?).to eq(true)
     end
 
+    it "shouldn't be refunded when not marked refunded" do
+      i = Invoice.new
+      expect(i.refunded?).not_to eq(true)
+    end
+
+    it "should be refunded when marked as refunded" do
+      i = Invoice.new(:refunded_at => Date.today)
+      expect(i.refunded?).to eq(true)
+    end
+
     it "shouldn't be paid when not marked paid" do
       i = Invoice.new
       expect(i.paid?).not_to eq(true)

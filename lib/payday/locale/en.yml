@@ -3,6 +3,7 @@ en:
     status:
       paid: PAID
       overdue: OVERDUE
+      refunded: REFUNDED
     invoice:
       bill_to: Bill To
       ship_to: Ship To

@@ -2,7 +2,7 @@ class CreatePaydayTables < ActiveRecord::Migration
   def self.up
     create_table :<%= options.invoice_name.pluralize.underscore.split("/").last %> do |t|
       # invoices will work without anything but bill_to, but there are quite a few options for the fields you can save, like ship_to
-      # due_at, and paid_at
+      # due_at, refunded_at, and paid_at
       t.string :bill_to
 
       t.timestamps
