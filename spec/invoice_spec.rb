@@ -62,7 +62,7 @@ module Payday
       # $1000 in Hats
       i.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
 
-      expect(i.total).to eq(BigDecimal.new("1234"))
+      expect(i.total).to eq(BigDecimal.new("1243"))
     end
 
     it "is overdue when it's past date and unpaid" do
