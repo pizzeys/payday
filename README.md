@@ -1,3 +1,5 @@
+![Build Status](https://www.codeship.io/projects/94d9b760-b088-0131-bef4-5a9e112e295d/status)
+
 Payday!
 ===
 Payday is a library for rendering invoices. At present it supports rendering invoices to pdfs, but we're planning on adding support for other formats in the near future.
@@ -55,9 +57,9 @@ Payday's Invoiceable module includes methods for rendering pdfs to disk and for 
 render to string method to render a pdf directly to the browser like this:
 
 In config/initializers/mime_types.rb:
-  
+
     Mime::Type.register 'application/pdf', :pdf
-    
+
 In your controller:
 
     respond_to do |format|
@@ -72,7 +74,7 @@ Be sure to restart your server after you edit the mime_types initializer. The up
 I18n
 ===
 Payday uses the i18n gem to provide support for custom labels and internationalized applications. You can change the default labels by adding a YAML file in the `config/locales` directory of your Rails app. Here are the default labels you can customize:
-  
+
     en:
       payday:
         status:
@@ -93,7 +95,7 @@ Payday uses the i18n gem to provide support for custom labels and internationali
           unit_price: Unit Price
           quantity: Quantity
           amount: Amount
-          
+
 If you translate the invoice to your own language, please send me a copy of your locale.yml file so that we can include it with
 the main Payday distribution and other Payday users can enjoy the fruits of your labor.
 
