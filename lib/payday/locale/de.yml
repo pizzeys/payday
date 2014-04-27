@@ -1,9 +1,10 @@
 de:
   payday:
-    status: 
+    status:
       overdue: ÜBERFÄLLIG
       paid: BEZAHLT
-    invoice: 
+      refunded: ZURÜCKGEZAHLT
+    invoice:
       bill_to: Rechnung an
       ship_to: Versenden an
       invoice_no: "Rechnungsnr.:"
@@ -14,7 +15,7 @@ de:
       tax: "Steuern:"
       total: "Gesamt:"
       notes: "Anmerkungen"
-    line_item: 
+    line_item:
       description: Beschreibung
       unit_price: Stückpreis
       quantity: Menge
