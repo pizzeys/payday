@@ -1,8 +1,9 @@
 nl:
   payday:
     status:
-      paid: Betaald
-      overdue: Betaaltermijn verstreken
+      paid: BETAALD
+      overdue: BETAALTERMIJN VERSTREKEN
+      refund: FAKTUUR
     invoice:
       bill_to: Te betalen door
       ship_to: Te bezorgen aan
