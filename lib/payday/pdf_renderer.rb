@@ -262,7 +262,7 @@ module Payday
 
       # Converts this number to a formatted currency string
       def self.number_to_currency(number, invoice)
-        number.to_money(invoice_or_default(invoice, :currency)).format
+        Money.new(number, invoice_or_default(invoice, :currency)).format
       end
 
       def self.max_cell_width(cell_proxy)

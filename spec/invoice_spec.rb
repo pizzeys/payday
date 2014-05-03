@@ -138,7 +138,7 @@ module Payday
 
         invoice.render_pdf_to_file("tmp/testing.pdf")
 
-        expect(File.exists?("tmp/testing.pdf")).to be_true
+        expect(File.exists?("tmp/testing.pdf")).to be true
       end
 
       context 'with some invoice details' do
