@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{Payday is a library for rendering invoices. At present it supports rendering invoices to pdfs, but we're planning on adding support for other formats in the near future.}
 
   s.add_dependency("prawn", "~> 1.0.0")
-  s.add_dependency("money", "~> 6.1.1")
+  s.add_dependency("money", "~> 6.1")
   s.add_dependency("prawn-svg", "~> 0.15.0.0")
   s.add_dependency("i18n", ">= 0.6.9")
 
