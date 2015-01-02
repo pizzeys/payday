@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Next Release
+
+* Bumped money gem to 6.5 (was 6.1.1)
+* Bumped i18n gem to 0.7 (was 0.6.11)
+
 ## 1.1.3 (2015-01-02)
 
 * Loosened requirements on Money gem.
