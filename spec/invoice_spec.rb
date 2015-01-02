@@ -8,7 +8,8 @@ module Payday
           :notes => "These are some notes.",
           :line_items => [LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")],
           :shipping_rate => 15.00, :shipping_description => "USPS Priority Mail:",
-          :tax_rate => 0.125, :tax_description => "Local Sales Tax, 12.5%")
+          :tax_rate => 0.125, :tax_description => "Local Sales Tax, 12.5%",
+          :invoice_date => Date.civil(1993, 4, 12))
 
       expect(i.invoice_number).to eq(20)
       expect(i.bill_to).to eq("Here")
@@ -19,6 +20,7 @@ module Payday
       expect(i.shipping_description).to eq("USPS Priority Mail:")
       expect(i.tax_rate).to eq(BigDecimal.new("0.125"))
       expect(i.tax_description).to eq("Local Sales Tax, 12.5%")
+      expect(i.invoice_date).to eq(Date.civil(1993, 4, 12))
     end
 
     it "should total all of the line items into a subtotal correctly" do
@@ -182,6 +184,7 @@ module Payday
           :tax_rate => 0.1,
           :notes => "These are some crazy awesome notes!",
           :invoice_number => 12,
+          :invoice_date => Date.civil(2011, 1, 1),
           :due_at => Date.civil(2011, 1, 22),
           :bill_to => "Alan Johnson\n101 This Way\nSomewhere, SC 22222",
           :ship_to => "Frank Johnson\n101 That Way\nOther, SC 22229"

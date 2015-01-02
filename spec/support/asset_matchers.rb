@@ -16,7 +16,7 @@ RSpec::Matchers.define(:match_binary_asset) do |file_name|
     end
   end
 
-  failure_message_for_should do |actual_output|
+  failure_message do |actual_output|
     expected_output_path = File.join('spec/assets', file_name)
     actual_output_path = File.join('tmp/rendered_output', file_name)
 

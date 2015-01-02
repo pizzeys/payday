@@ -126,6 +126,18 @@ module Payday
           table_data << [bold_cell(pdf, I18n.t('payday.invoice.invoice_no', :default => "Invoice #:")),
               bold_cell(pdf, invoice.invoice_number.to_s, :align => :right)]
         end
+        
+        # invoice date
+        if defined?(invoice.invoice_date) && invoice.invoice_date
+          if invoice.invoice_date.is_a?(Date) || invoice.invoice_date.is_a?(Time)
+            invoice_date = invoice.invoice_date.strftime(Payday::Config.default.date_format)
+          else
+            invoice_date = invoice.invoice_date.to_s
+          end
+          
+          table_data << [bold_cell(pdf, I18n.t('payday.invoice.invoice_date', :default => "Invoice Date:")),
+              bold_cell(pdf, invoice_date, :align => :right)]
+        end
 
         # Due on
         if defined?(invoice.due_at) && invoice.due_at
