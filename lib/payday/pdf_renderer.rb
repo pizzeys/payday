@@ -200,7 +200,7 @@ module Payday
 
       pdf.move_cursor_to(pdf.cursor - 20)
       pdf.table(table_data, width: pdf.bounds.width, header: true,
-                cell_style: { border_width: 0.5, border_color: "cccccc", 
+                cell_style: { border_width: 0.5, border_color: "cccccc",
                               padding: [5, 10] },
                 row_colors: %w(dfdfdf ffffff)) do
 
