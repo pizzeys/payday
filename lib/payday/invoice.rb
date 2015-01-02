@@ -1,11 +1,10 @@
 module Payday
-
   # Basically just an invoice. Stick a ton of line items in it, add some details, and then render it out!
   class Invoice
     include Payday::Invoiceable
 
     attr_accessor :invoice_number, :bill_to, :ship_to, :notes, :line_items, :shipping_rate, :shipping_description,
-                  :tax_rate, :tax_description, :due_at, :paid_at, :refunded_at, :currency, :invoice_details, :invoice_date
+      :tax_rate, :tax_description, :due_at, :paid_at, :refunded_at, :currency, :invoice_details, :invoice_date
 
     def initialize(options =  {})
       self.invoice_number = options[:invoice_number] || nil

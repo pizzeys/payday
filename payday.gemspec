@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
+$LOAD_PATH.push File.expand_path("../lib", __FILE__)
 require "payday/version"
 
 Gem::Specification.new do |s|
@@ -8,9 +8,13 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Alan Johnson"]
   s.email       = ["alan@commondream.net"]
-  s.homepage    = ""
-  s.summary     = %q{git remote add origin git@github.com:commondream/payday.git}
-  s.description = %q{Payday is a library for rendering invoices. At present it supports rendering invoices to pdfs, but we're planning on adding support for other formats in the near future.}
+  s.homepage    = "https://github.com/commondream/payday"
+  s.summary     = "A simple library for rendering invoices."
+  s.description = <<-EOF
+    Payday is a library for rendering invoices. At present it supports rendering
+    invoices to pdfs, but we're planning on adding support for other formats in
+    the near future.
+  EOF
 
   s.add_dependency("prawn", "~> 1.0.0")
   s.add_dependency("money", "~> 6.5")
@@ -19,8 +23,9 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency("rspec", "~> 3.1.0")
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.files = `git ls-files`.split("\n")
+  s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables =
+    `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
   s.require_paths = ["lib"]
 end
