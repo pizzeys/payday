@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.1.3
+## 1.1.3 (2015-01-02)
 
 * Loosened requirements on Money gem.
 * Bumped rspec to latest and cleared up a deprecation warning.
