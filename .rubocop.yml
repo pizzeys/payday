@@ -5,4 +5,4 @@ Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
 
 Style/AlignParameters:
-  EnforcedStyle: with_fixed_indentation
+  EnforcedStyle: with_first_parameter

@@ -200,8 +200,10 @@ module Payday
 
       pdf.move_cursor_to(pdf.cursor - 20)
       pdf.table(table_data, width: pdf.bounds.width, header: true,
-          cell_style: { border_width: 0.5, border_color: "cccccc", padding: [5, 10] },
-          row_colors: %w(dfdfdf ffffff)) do
+                cell_style: { border_width: 0.5, border_color: "cccccc", 
+                              padding: [5, 10] },
+                row_colors: %w(dfdfdf ffffff)) do
+
         # left align the number columns
         columns(1..3).rows(1..row_length - 1).style(align: :right)
 
@@ -215,23 +217,46 @@ module Payday
 
     def self.totals_lines(invoice, pdf)
       table_data = []
-      table_data << [bold_cell(pdf, I18n.t("payday.invoice.subtotal", default: "Subtotal:")),
-                     cell(pdf, number_to_currency(invoice.subtotal, invoice), align: :right)]
+      table_data << [
+        bold_cell(pdf, I18n.t("payday.invoice.subtotal", default: "Subtotal:")),
+        cell(pdf, number_to_currency(invoice.subtotal, invoice), align: :right)
+      ]
+
       if invoice.tax_rate > 0
-        table_data << [bold_cell(pdf,
-          invoice.tax_description.nil? ? I18n.t("payday.invoice.tax", default: "Tax:") : invoice.tax_description),
-                       cell(pdf, number_to_currency(invoice.tax, invoice), align: :right)]
+        if invoice.tax_description.nil?
+          tax_description = I18n.t("payday.invoice.tax", default: "Tax:")
+        else
+          tax_description = invoice.tax_description
+        end
+
+        table_data << [
+          bold_cell(pdf, tax_description),
+          cell(pdf, number_to_currency(invoice.tax, invoice), align: :right)
+        ]
       end
       if invoice.shipping_rate > 0
-        table_data << [bold_cell(pdf,
-          invoice.shipping_description.nil? ? I18n.t("payday.invoice.shipping", default: "Shipping:") : invoice.shipping_description),
-                       cell(pdf, number_to_currency(invoice.shipping, invoice), align: :right)]
+        if invoice.shipping_description.nil?
+          shipping_description =
+            I18n.t("payday.invoice.shipping", default: "Shipping:")
+        else
+          shipping_description = invoice.shipping_description
+        end
+
+        table_data << [
+          bold_cell(pdf, shipping_description),
+          cell(pdf, number_to_currency(invoice.shipping, invoice),
+               align: :right)
+        ]
       end
-      table_data << [bold_cell(pdf, I18n.t("payday.invoice.total", default: "Total:"), size: 12),
-        cell(pdf, number_to_currency(invoice.total, invoice), size: 12, align: :right)]
+      table_data << [
+        bold_cell(pdf, I18n.t("payday.invoice.total", default: "Total:"),
+                  size: 12),
+        cell(pdf, number_to_currency(invoice.total, invoice),
+             size: 12, align: :right)
+      ]
       table = pdf.make_table(table_data, cell_style: { borders: [] })
       pdf.bounding_box([pdf.bounds.width - table.width, pdf.cursor],
-        width: table.width, height: table.height + 2) do
+                       width: table.width, height: table.height + 2) do
 
         table.draw
       end
