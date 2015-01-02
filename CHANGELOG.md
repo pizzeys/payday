@@ -5,6 +5,7 @@
 * Loosened requirements on Money gem.
 * Bumped rspec to latest and cleared up a deprecation warning.
 * Added support for `invoice_date` field (thanks [danielma](https://github.com/danielma)!)
+* Bugfix: Resolved issue where money values were being shown at 1/100th of the intended amount (thanks [watsonbox](https://github.com/watsonbox)!)
 
 ## 1.1.2 (2014-05-03)
 
