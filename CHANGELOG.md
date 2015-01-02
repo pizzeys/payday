@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.1.3
+
+* Loosened requirements on Money gem.
+* Bumped rspec to latest and cleared up a deprecation warning.
+* Added support for `invoice_date` field (thanks [danielma](https://github.com/danielma)!)
+
 ## 1.1.2 (2014-05-03)
 
 * Added NL locale (thanks [jedi4ever](https://github.com/jedi4ever)!).
