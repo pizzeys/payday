@@ -152,7 +152,7 @@ module Payday
 
       # Paid on
       if defined?(invoice.paid_at) && invoice.paid_at
-        if invoice.paid_at.is_a?(Date) || invoice.due_at.is_a?(Time)
+        if invoice.paid_at.is_a?(Date) || invoice.paid_at.is_a?(Time)
           paid_date = invoice.paid_at.strftime(Payday::Config.default.date_format)
         else
           paid_date = invoice.paid_at.to_s
@@ -164,7 +164,7 @@ module Payday
 
       # Refunded on
       if defined?(invoice.refunded_at) && invoice.refunded_at
-        if invoice.refunded_at.is_a?(Date) || invoice.due_at.is_a?(Time)
+        if invoice.refunded_at.is_a?(Date) || invoice.refunded_at.is_a?(Time)
           refunded_date = invoice.refunded_at.strftime(Payday::Config.default.date_format)
         else
           refunded_date = invoice.refunded_at.to_s
