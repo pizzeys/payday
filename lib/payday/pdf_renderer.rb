@@ -206,9 +206,9 @@ module Payday
         table_data = []
         if invoice.discount > 0
           table_data << [bold_cell(pdf, I18n.t('payday.invoice.discount', :default => "Discount:")),
-              cell(pdf, number_to_currency(invoice.discount, invoice), :align => :right)]
+              cell(pdf, number_to_currency(-invoice.discount, invoice), :align => :right)]
         end
-        
+
         table_data << [bold_cell(pdf, I18n.t('payday.invoice.subtotal', :default => "Subtotal:")),
             cell(pdf, number_to_currency(invoice.subtotal, invoice), :align => :right)]
         if invoice.tax_rate > 0
