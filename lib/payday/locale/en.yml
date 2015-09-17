@@ -13,6 +13,7 @@ en:
       refunded_date: "Refunded Date:"
       subtotal: "Subtotal:"
       shipping: "Shipping:"
+      discount: "Discount:"
       tax: "Tax:"
       total: "Total:"
     line_item:

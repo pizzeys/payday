@@ -13,6 +13,7 @@ fr:
       refunded_date: "Remboursé le:"
       subtotal: "Sous-total:"
       shipping: "Livraison:"
+      discount: "Rabais:"
       tax: "Taxe:"
       total: "Total:"
       notes: "Notes"
