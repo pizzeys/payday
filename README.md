@@ -29,7 +29,7 @@ Example:
 
 Documentation
 ===
-Documentation for the latest version of Payday is available at [rdoc.info](http://rdoc.info/github/commondream/payday/v1.0.1/frames).
+Documentation for the latest version of Payday is available at [rubydoc.info](http://www.rubydoc.info/gems/payday).
 
 Customizing Your Invoice
 ===
