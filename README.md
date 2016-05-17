@@ -1,5 +1,3 @@
-![Build Status](https://www.codeship.io/projects/94d9b760-b088-0131-bef4-5a9e112e295d/status)
-
 Payday!
 ===
 Payday is a library for rendering invoices. At present it supports rendering invoices to pdfs, but we're planning on adding support for other formats in the near future.
@@ -102,8 +100,6 @@ the main Payday distribution and other Payday users can enjoy the fruits of your
 Examples
 ===
 Here's an [example PDF Invoice](https://github.com/downloads/commondream/payday/example.pdf)
-
-There's also an example Rails application running on Heroku at [http://payday-example.heroku.com](http://payday-example.heroku.com). You can check out the source at [http://github.com/commondream/payday-example](http://github.com/commondream/payday-example).
 
 Contributing
 ===
