@@ -50,15 +50,15 @@ module Payday::Invoiceable
   end
 
   def overdue?
-    defined?(:due_at) && ((due_at.is_a?(Date) && due_at < Date.today) || (due_at.is_a?(Time) && due_at < Time.now))  && !paid_at
+    defined?(due_at) && ((due_at.is_a?(Date) && due_at < Date.today) || (due_at.is_a?(Time) && due_at < Time.now))  && !paid_at
   end
 
   def refunded?
-    defined?(:refunded_at) && !!refunded_at
+    defined?(refunded_at) && !!refunded_at
   end
 
   def paid?
-    defined?(:paid_at) && !!paid_at
+    defined?(paid_at) && !!paid_at
   end
 
   # Renders this invoice to pdf as a string
