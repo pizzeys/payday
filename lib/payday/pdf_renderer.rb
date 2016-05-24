@@ -273,10 +273,7 @@ module Payday
 
       # Converts this number to a formatted currency string
       def self.number_to_currency(number, invoice)
-        currency = Money::Currency.wrap(invoice_or_default(invoice, :currency))
-        number *= currency.subunit_to_unit
-        number = number.round unless Money.infinite_precision
-        Money.new(number, currency).format
+        number.to_money(invoice_or_default(invoice, :currency)).format
       end
 
       def self.max_cell_width(cell_proxy)
