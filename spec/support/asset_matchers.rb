@@ -5,7 +5,6 @@ RSpec::Matchers.define(:match_binary_asset) do |file_name|
   match do |actual_output|
     expected_path = File.join("spec/assets", file_name)
     expected_output = File.binread(expected_path)
-
     (actual_output == expected_output).tap do |result|
       unless result
         output_path = File.join("tmp/rendered_output", file_name)
