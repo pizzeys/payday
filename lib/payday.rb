@@ -4,6 +4,7 @@ require "time"
 require "bigdecimal"
 require "prawn"
 require "prawn-svg"
+require "prawn/table"
 require "money"
 
 require_relative "payday/version"
