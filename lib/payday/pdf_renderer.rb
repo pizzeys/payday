@@ -189,15 +189,15 @@ module Payday
       table_data = []
       table_data << [bold_cell(pdf, I18n.t("payday.line_item.description", default: "Description"), borders: []),
                      bold_cell(pdf, I18n.t("payday.line_item.unit_price", default: "Unit Price"), align: :center, borders: []),
+                     bold_cell(pdf, I18n.t("payday.line_item.tax", default: "Tax"), align: :center, borders: []),
                      bold_cell(pdf, I18n.t("payday.line_item.quantity", default: "Quantity"), align: :center, borders: []),
-                     bold_cell(pdf, I18n.t("payday.line_item.amount", default: "Amount"), align: :center, borders: []),
-                     bold_cell(pdf, I18n.t("payday.line_item.tax", default: "Tax"), align: :center, borders: [])]
+                     bold_cell(pdf, I18n.t("payday.line_item.amount", default: "Amount"), align: :center, borders: [])]
       invoice.line_items.each do |line|
         table_data << [line.description,
                        (line.display_price || number_to_currency(line.price, invoice)),
+                       number_to_currency(line.tax, invoice),
                        (line.display_quantity || BigDecimal.new(line.quantity.to_s).to_s("F")),
-                       number_to_currency(line.amount, invoice),
-                       number_to_currency(line.tax, invoice)]
+                       number_to_currency(line.amount, invoice)]
       end
 
       pdf.move_cursor_to(pdf.cursor - 20)
