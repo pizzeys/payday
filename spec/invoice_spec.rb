@@ -167,8 +167,8 @@ module Payday
           EOF
 
           invoice.line_items += [
-            LineItem.new(price: 20, quantity: 5, description: "Pants"),
-            LineItem.new(price: 10, quantity: 3, description: "Shirts"),
+            LineItem.new(price: 20, quantity: 5, description: "Pants", tax: 1.23),
+            LineItem.new(price: 10, quantity: 3, description: "Shirts", tax: 0.1),
             LineItem.new(price: 5, quantity: 200, description: "Hats")
           ] * 30
 
@@ -186,9 +186,9 @@ module Payday
 
         it "should render an invoice correctly" do
           invoice.line_items += [
-            LineItem.new(price: 20, quantity: 5, description: "Pants"),
-            LineItem.new(price: 10, quantity: 3, description: "Shirts"),
-            LineItem.new(price: 5, quantity: 200.0, description: "Hats")
+              LineItem.new(price: 20, quantity: 5, description: "Pants", tax: 1.23),
+              LineItem.new(price: 10, quantity: 3, description: "Shirts", tax: 0.1),
+              LineItem.new(price: 5, quantity: 200, description: "Hats")
           ] * 3
 
           expect(invoice.render_pdf).to match_binary_asset "svg.pdf"
