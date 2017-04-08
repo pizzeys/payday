@@ -4,10 +4,15 @@ module Payday
   class Invoice
     include Payday::Invoiceable
 
-    attr_accessor :invoice_number, :bill_to, :ship_to, :notes, :line_items, :shipping_rate, :shipping_description,
-                  :tax_rate, :tax2_rate, :tax_description, :tax2_description, :due_at, :paid_at, :refunded_at, :currency, :invoice_details, :discount
+    attr_accessor :invoice_logo, :company_name, :company_details, :invoice_number,
+                  :bill_to, :ship_to, :notes, :line_items, :shipping_rate, :shipping_description,
+                  :tax_rate, :tax2_rate, :tax_description, :tax2_description, :due_at, :paid_at,
+                  :refunded_at, :currency, :invoice_details, :discount
 
     def initialize(options =  {})
+      self.invoice_number = options[:invoice_logo] || nil
+      self.invoice_number = options[:company_name] || nil
+      self.invoice_number = options[:company_details] || nil
       self.invoice_number = options[:invoice_number] || nil
       self.bill_to = options[:bill_to] || nil
       self.ship_to = options[:ship_to] || nil
