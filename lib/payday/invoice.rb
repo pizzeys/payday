@@ -12,9 +12,9 @@ module Payday
       self.ship_to = options[:ship_to] || nil
       self.notes = options[:notes] || nil
       self.line_items = options[:line_items] || []
-      self.shipping_rate = options[:shipping_rate] || nil
+      self.shipping_rate = options[:shipping_rate] || "0.00"
       self.shipping_description = options[:shipping_description] || nil
-      self.tax_rate = options[:tax_rate] || nil
+      self.tax_rate = options[:tax_rate] || "0.00"
       self.tax_description = options[:tax_description] || nil
       self.due_at = options[:due_at] || nil
       self.paid_at = options[:paid_at] || nil
