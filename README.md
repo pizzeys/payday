@@ -20,14 +20,14 @@ It's pretty easy to use Payday with the built in objects. We include the Invoice
 Example:
 
     invoice = Payday::Invoice.new(:invoice_number => 12)
-    invoice.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
-    invoice.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
-    invoice.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
+    invoice.line_items << Payday::LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
+    invoice.line_items << Payday::LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
+    invoice.line_items << Payday::LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
     invoice.render_pdf_to_file("/path/to_file.pdf")
 
 Documentation
 ===
-Documentation for the latest version of Payday is available at [rdoc.info](http://rdoc.info/github/commondream/payday/v1.0.1/frames).
+Documentation for the latest version of Payday is available at [rubydoc.info](http://www.rubydoc.info/gems/payday).
 
 Customizing Your Invoice
 ===
@@ -55,9 +55,9 @@ Payday's Invoiceable module includes methods for rendering pdfs to disk and for 
 render to string method to render a pdf directly to the browser like this:
 
 In config/initializers/mime_types.rb:
-  
+
     Mime::Type.register 'application/pdf', :pdf
-    
+
 In your controller:
 
     respond_to do |format|
@@ -72,12 +72,13 @@ Be sure to restart your server after you edit the mime_types initializer. The up
 I18n
 ===
 Payday uses the i18n gem to provide support for custom labels and internationalized applications. You can change the default labels by adding a YAML file in the `config/locales` directory of your Rails app. Here are the default labels you can customize:
-  
+
     en:
       payday:
         status:
           paid: PAID
           overdue: OVERDUE
+          refunded: REFUNDED
         invoice:
           bill_to: Bill To
           ship_to: Ship To
@@ -92,15 +93,13 @@ Payday uses the i18n gem to provide support for custom labels and internationali
           unit_price: Unit Price
           quantity: Quantity
           amount: Amount
-          
+
 If you translate the invoice to your own language, please send me a copy of your locale.yml file so that we can include it with
 the main Payday distribution and other Payday users can enjoy the fruits of your labor.
 
 Examples
 ===
 Here's an [example PDF Invoice](https://github.com/downloads/commondream/payday/example.pdf)
-
-There's also an example Rails application running on Heroku at [http://payday-example.heroku.com](http://payday-example.heroku.com). You can check out the source at [http://github.com/commondream/payday-example](http://github.com/commondream/payday-example).
 
 Contributing
 ===

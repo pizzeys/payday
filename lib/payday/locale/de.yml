@@ -8,11 +8,11 @@ de:
       bill_to: Rechnung an
       ship_to: Versenden an
       invoice_no: "Rechnungsnr.:"
+      invoice_date: "Rechnungsdatum:"
       due_date: "Fälligkeit:"
       paid_date: "Zahlungsdatum:"
       subtotal: "Zwischensumme:"
       shipping: "Versand:"
-      discount: "Rabatt:"
       tax: "Steuern:"
       total: "Gesamt:"
       notes: "Anmerkungen"

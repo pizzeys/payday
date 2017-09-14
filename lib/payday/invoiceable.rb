@@ -10,10 +10,9 @@
 # when generating an invoice. We include a simple tax method that calculates tax, but it's probably wiser
 # to override this in your class (our calculated tax won't be stored to a database by default, for example).
 #
-# If the +due_at+ and +paid_at+ methods are available, {Payday::Invoiceable} will use them to show due dates and
-# paid dates, as well as stamps showing if the invoice is paid or due.
+# If the +due_at+, +paid_at+, and +refunded_at+ methods are available, {Payday::Invoiceable} will use them to show due dates,
+# paid dates, and refunded dates, as well as stamps showing if the invoice is paid or due.
 module Payday::Invoiceable
-
   # Who the invoice is being sent to.
   def bill_to
     "Goofy McGoofison\nYour Invoice Doesn't\nHave It's Own BillTo Method"
@@ -21,7 +20,7 @@ module Payday::Invoiceable
 
   # Calculates the subtotal of this invoice by adding up all of the line items
   def subtotal
-    line_items.inject(BigDecimal.new("0")) { |result, item| result += item.amount } - discount
+    line_items.reduce(BigDecimal.new("0")) { |result, item| result += item.amount }
   end
 
   # The tax for this invoice, as a BigDecimal
@@ -59,15 +58,15 @@ module Payday::Invoiceable
   end
 
   def overdue?
-    defined?(:due_at) && ((due_at.is_a?(Date) && due_at < Date.today) || (due_at.is_a?(Time) && due_at < Time.now))  && !paid_at
-  end
-
-  def paid?
-    defined?(:paid_at) && !!paid_at
+    defined?(due_at) && ((due_at.is_a?(Date) && due_at < Date.today) || (due_at.is_a?(Time) && due_at < Time.now))  && !paid_at
   end
 
   def refunded?
-    defined?(:refunded_at) && !!refunded_at
+    defined?(refunded_at) && !!refunded_at
+  end
+
+  def paid?
+    defined?(paid_at) && !!paid_at
   end
 
   # Renders this invoice to pdf as a string
