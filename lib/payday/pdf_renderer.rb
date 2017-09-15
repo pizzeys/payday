@@ -17,8 +17,14 @@ module Payday
     def self.pdf(invoice)
       pdf = Prawn::Document.new(page_size: invoice_or_default(invoice, :page_size))
 
+      font_dir = File.join(File.dirname(__dir__), '..', 'fonts')
+      pdf.font_families.update(
+        'NotoSans' => { normal: File.join(font_dir, 'NotoSans-Regular.ttf'),
+                        bold:   File.join(font_dir, 'NotoSans-Bold.ttf') })
+
       # set up some default styling
       pdf.font_size(8)
+      pdf.font 'NotoSans'
 
       stamp(invoice, pdf)
       company_banner(invoice, pdf)
