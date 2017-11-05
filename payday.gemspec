@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   EOF
 
   s.add_dependency("prawn", "~> 2.1.0")
-  s.add_dependency("money", "~> 6.1.0")
+  s.add_dependency("money", "~> 6.10.0")
   s.add_dependency("prawn-svg", "~> 0.25.2")
   s.add_dependency("prawn-table", "~> 0.2.2")
   s.add_dependency("i18n")
