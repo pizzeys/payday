@@ -16,6 +16,7 @@ de:
       tax: "Steuern:"
       total: "Gesamt:"
       notes: "Anmerkungen"
+      discount: "Rabatt:"
     line_item:
       description: Beschreibung
       unit_price: Stückpreis

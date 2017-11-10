@@ -20,16 +20,17 @@ module Payday::Invoiceable
 
   # Calculates the subtotal of this invoice by adding up all of the line items
   def subtotal
-    line_items.reduce(BigDecimal.new("0")) { |result, item| result += item.amount }
+    sum_items = line_items.reduce(BigDecimal.new("0")) { |result, item| result += item.amount }
+    sum_items - discount
   end
 
   # The tax for this invoice, as a BigDecimal
   def tax
-    calculate_tax tax_rate
+    calculate_tax(tax_rate)
   end
 
   def tax2
-    calculate_tax tax2_rate
+    calculate_tax(tax2_rate)
   end
 
   def calculate_tax(rate)

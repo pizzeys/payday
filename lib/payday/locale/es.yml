@@ -1,10 +1,10 @@
 es:
-  payday: 
-    status: 
+  payday:
+    status:
       overdue: RETRASADO
       paid: PAGADO
       refunded: REINTEGRADO
-    invoice: 
+    invoice:
       bill_to: Facturar a
       invoice_no: "Recibo #:"
       due_date: "Vencimiento:"
@@ -15,7 +15,8 @@ es:
       tax: "Impuesto:"
       total: "Total:"
       notes: "Notas"
-    line_item: 
+      discount: "Descuento:"
+    line_item:
       description: Descripción
       unit_price: Precio por Unidad
       quantity: Cantidad

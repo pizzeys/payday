@@ -20,11 +20,16 @@ module Payday
       font_dir = File.join(File.dirname(__dir__), '..', 'fonts')
       pdf.font_families.update(
         'NotoSans' => { normal: File.join(font_dir, 'NotoSans-Regular.ttf'),
-                        bold:   File.join(font_dir, 'NotoSans-Bold.ttf') })
+                        bold:   File.join(font_dir, 'NotoSans-Bold.ttf') },
+        'NotoSansThai' => { normal: File.join(font_dir, 'NotoSansThai-Regular.ttf'),
+                        bold:   File.join(font_dir, 'NotoSansThai-Bold.ttf') },
+
+      )
 
       # set up some default styling
       pdf.font_size(8)
       pdf.font 'NotoSans'
+      pdf.fallback_fonts(["NotoSansThai"])
 
       stamp(invoice, pdf)
       company_banner(invoice, pdf)
@@ -225,6 +230,14 @@ module Payday
 
     def self.totals_lines(invoice, pdf)
       table_data = []
+
+      if invoice.discount > 0
+        table_data << [
+          bold_cell(pdf, I18n.t("payday.invoice.discount", default: "Discount:")),
+          cell(pdf, number_to_currency(invoice.discount, invoice), align: :right)
+        ]
+      end
+
       table_data << [
         bold_cell(pdf, I18n.t("payday.invoice.subtotal", default: "Subtotal:")),
         cell(pdf, number_to_currency(invoice.subtotal, invoice), align: :right)
