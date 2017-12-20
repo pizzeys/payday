@@ -4,5 +4,5 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
 
-Style/AlignParameters:
+Layout/AlignParameters:
   EnforcedStyle: with_first_parameter
