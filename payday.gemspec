@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency("prawn-svg", "~> 0.27.1")
   s.add_dependency("prawn-table", "~> 0.2.2")
   s.add_dependency("money", ">= 6.9.0")
-  s.add_dependency("i18n", ">= 0.8")
+  s.add_dependency("i18n", ">= 1.0.0")
 
   s.add_development_dependency("rspec", "~> 3.5.0")
 
