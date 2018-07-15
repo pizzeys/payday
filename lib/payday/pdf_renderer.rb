@@ -224,7 +224,7 @@ module Payday
         cell(pdf, number_to_currency(invoice.subtotal, invoice), align: :right)
       ]
 
-      if invoice.tax_rate > 0
+      if invoice.tax != 0
         if invoice.tax_description.nil?
           tax_description = I18n.t("payday.invoice.tax", default: "Tax:")
         else
