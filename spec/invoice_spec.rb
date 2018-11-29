@@ -71,6 +71,28 @@ module Payday
       expect(i.total).to eq(BigDecimal.new("1243"))
     end
 
+    context 'when calculated total is passed' do
+
+      it 'should set total to calculated total' do
+
+        i = Invoice.new(tax_rate: 0.1, calculated_total: 1000)
+
+        # $100 in Pants
+        i.line_items << LineItem.new(price: 20, quantity: 5, description: "Pants")
+
+        # $30 in Shirts
+        i.line_items <<
+            LineItem.new(price: 10, quantity: 3, description: "Shirts")
+
+        # $1000 in Hats
+        i.line_items << LineItem.new(price: 5, quantity: 200, description: "Hats")
+
+        expect(i.total).to eq(BigDecimal.new("1000"))
+
+      end
+
+    end
+
     it "is overdue when it's past date and unpaid" do
       i = Invoice.new(due_at: Date.today - 1)
       expect(i.overdue?).to eq(true)
@@ -130,6 +152,7 @@ module Payday
       expect(details).to include(%w(Test Yes))
       expect(details).to include(%w(Awesome Absolutely))
     end
+
 
     context 'subtotal and tax calculation changes' do
 
