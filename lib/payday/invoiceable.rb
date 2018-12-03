@@ -33,9 +33,7 @@ module Payday::Invoiceable
 
   # The tax for this invoice, as a BigDecimal
   def tax
-      calculated = subtotal_with_items_tax * tax_rate
-      return items_tax if calculated < 0
-      calculated + items_tax
+      items_tax
   end
 
   # TODO Add a per weight unit shipping cost
