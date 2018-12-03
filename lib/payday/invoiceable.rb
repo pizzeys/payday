@@ -50,7 +50,6 @@ module Payday::Invoiceable
 
   # Calculates the total for this invoice.
   def total
-    return calculated_total if defined?(calculated_total) && calculated_total
     subtotal + tax + shipping
   end
 
