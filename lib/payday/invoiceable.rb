@@ -20,18 +20,16 @@ module Payday::Invoiceable
 
   # Calculates the subtotal of this invoice by adding up all of the line items
   def subtotal
-    line_items.reduce(BigDecimal.new("0")) { |result, item| result += item.amount }
+    line_items.reduce(BigDecimal.new("0")) { |result, item| result += item.amount_no_tax }
+  end
+
+  def items_tax
+    line_items.reduce(BigDecimal.new("0")) { |result, item| result += item.item_tax }
   end
 
   # The tax for this invoice, as a BigDecimal
   def tax
-    if defined?(tax_rate)
-      calculated = subtotal * tax_rate
-      return 0 if calculated < 0
-      calculated
-    else
-      0
-    end
+      items_tax
   end
 
   # TODO Add a per weight unit shipping cost

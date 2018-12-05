@@ -131,6 +131,34 @@ module Payday
       expect(details).to include(%w(Awesome Absolutely))
     end
 
+    context 'subtotal and tax calculation changes' do
+
+      let(:invoice_with_items) { 
+        Invoice.new(line_items: 
+          [ LineItem.new(price: 100, quantity: 1, description: "Item 1", tax: 10.5),
+            LineItem.new(price: 200, quantity: 2, description: "Item 2", tax: 7.3)
+          ]) 
+      }
+
+      it 'subtotal should not include items tax' do
+        expect(invoice_with_items.subtotal).to eq(BigDecimal.new("500"))
+      end
+
+      it 'tax should include items tax' do
+        expect(invoice_with_items.tax).to eq(BigDecimal.new("25.1"))
+      end
+         
+      it 'total should be calculated correctly' do
+        expect(invoice_with_items.total).to eq(BigDecimal.new("525.1"))
+      end
+
+      it 'items amount should be calculated correctly' do
+        expect(invoice_with_items.line_items[0].amount).to eq(BigDecimal.new("110.5"))
+        expect(invoice_with_items.line_items[1].amount).to eq(BigDecimal.new("414.6"))
+      end
+
+    end
+
     describe "rendering" do
       before do
         Dir.mkdir("tmp") unless File.exist?("tmp")
