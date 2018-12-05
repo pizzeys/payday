@@ -27,10 +27,6 @@ module Payday::Invoiceable
     line_items.reduce(BigDecimal.new("0")) { |result, item| result += item.item_tax }
   end
 
-  def subtotal_with_items_tax
-    subtotal + items_tax
-  end
-
   # The tax for this invoice, as a BigDecimal
   def tax
       items_tax
