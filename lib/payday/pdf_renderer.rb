@@ -15,7 +15,7 @@ module Payday
     private
 
     def self.pdf(invoice)
-      pdf = Prawn::Document.new(page_size: invoice_or_default(invoice, :page_size))
+      pdf = PrawnTtfDocument.new(page_size: invoice_or_default(invoice, :page_size))
 
       # set up some default styling
       pdf.font_size(8)
