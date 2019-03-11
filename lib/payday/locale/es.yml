@@ -10,6 +10,7 @@ es:
       due_date: "Vencimiento:"
       ship_to: Enviar a
       paid_date: "Pagado en:"
+      refunded_date: "Reembolsado en:"
       subtotal: "Subtotal:"
       shipping: "Envío:"
       tax: "Impuesto:"

@@ -9,6 +9,7 @@ fr:
       invoice_no: "Facture #:"
       due_date: "Paiment dû le:"
       paid_date: "Payé le:"
+      refunded_date: "Remboursé le:"
       subtotal: "Sous-total:"
       shipping: "Livraison:"
       tax: "Taxe:"

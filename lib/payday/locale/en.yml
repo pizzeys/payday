@@ -10,6 +10,7 @@ en:
       invoice_no: "Invoice #:"
       due_date: "Due Date:"
       paid_date: "Paid Date:"
+      refunded_date: "Refund Date:"
       subtotal: "Subtotal:"
       shipping: "Shipping:"
       tax: "Tax:"

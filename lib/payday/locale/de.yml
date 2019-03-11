@@ -11,6 +11,7 @@ de:
       invoice_date: "Rechnungsdatum:"
       due_date: "Fälligkeit:"
       paid_date: "Zahlungsdatum:"
+      refunded_date: "Rückerstattungsdatum:"
       subtotal: "Zwischensumme:"
       shipping: "Versand:"
       tax: "Steuern:"
