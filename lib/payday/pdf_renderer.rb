@@ -207,7 +207,7 @@ module Payday
         table_data << [line.description,
                        (line.display_price || number_to_currency(line.price, invoice)),
                        number_to_currency(line.tax, invoice),
-                       (line.display_quantity || BigDecimal.new(line.quantity.to_s).to_s("F")),
+                       (line.display_quantity || BigDecimal(line.quantity.to_s).to_s("F")),
                        number_to_currency(line.amount, invoice)]
       end
 
@@ -333,6 +333,7 @@ module Payday
 
     # Converts this number to a formatted currency string
     def self.number_to_currency(number, invoice)
+      Money.locale_backend = :i18n
       currency = Money::Currency.wrap(invoice_or_default(invoice, :currency))
       number *= currency.subunit_to_unit
       number = number.round unless Money.infinite_precision

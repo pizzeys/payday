@@ -15,3 +15,7 @@ require_relative "payday/line_item"
 require_relative "payday/pdf_renderer"
 require_relative "payday/invoiceable"
 require_relative "payday/invoice"
+
+Prawn::Font::AFM.hide_m17n_warning = true
+
+Money.locale_backend = :i18n

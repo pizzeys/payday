@@ -20,7 +20,7 @@ module Payday::Invoiceable
 
   # Calculates the subtotal of this invoice by adding up all of the line items
   def subtotal
-    sum_items = line_items.reduce(BigDecimal.new("0")) { |result, item| result += item.amount }
+    sum_items = line_items.reduce(BigDecimal("0")) { |result, item| result += item.amount }
     sum_items - discount
   end
 

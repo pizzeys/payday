@@ -17,9 +17,9 @@ module Payday
       expect(i.ship_to).to eq("There")
       expect(i.notes).to eq("These are some notes.")
       expect(i.line_items[0].description).to eq("Shirts")
-      expect(i.shipping_rate).to eq(BigDecimal.new("15.00"))
+      expect(i.shipping_rate).to eq(BigDecimal("15.00"))
       expect(i.shipping_description).to eq("USPS Priority Mail:")
-      expect(i.tax_rate).to eq(BigDecimal.new("0.125"))
+      expect(i.tax_rate).to eq(BigDecimal("0.125"))
       expect(i.tax_description).to eq("Local Sales Tax, 12.5%")
       expect(i.invoice_date).to eq(Date.civil(1993, 4, 12))
     end
@@ -37,14 +37,14 @@ module Payday
       # $1000 in Hats
       i.line_items << LineItem.new(price: 5, quantity: 200, description: "Hats")
 
-      expect(i.subtotal).to eq(BigDecimal.new("1130"))
+      expect(i.subtotal).to eq(BigDecimal("1130"))
     end
 
     it "should calculate the correct tax rounded to two decimal places" do
       i = Invoice.new(tax_rate: 0.1)
       i.line_items << LineItem.new(price: 20, quantity: 5, description: "Pants")
 
-      expect(i.tax).to eq(BigDecimal.new("10"))
+      expect(i.tax).to eq(BigDecimal("10"))
     end
 
     it "shouldn't apply taxes to invoices with subtotal <= 0" do
@@ -52,7 +52,7 @@ module Payday
       i.line_items << LineItem.new(price: -1, quantity: 100,
         description: "Negative Priced Pants")
 
-      expect(i.tax).to eq(BigDecimal.new("0"))
+      expect(i.tax).to eq(BigDecimal("0"))
     end
 
     it "should calculate the total for an invoice correctly" do
@@ -68,7 +68,7 @@ module Payday
       # $1000 in Hats
       i.line_items << LineItem.new(price: 5, quantity: 200, description: "Hats")
 
-      expect(i.total).to eq(BigDecimal.new("1243"))
+      expect(i.total).to eq(BigDecimal("1243"))
     end
 
     it "is overdue when it's past date and unpaid" do

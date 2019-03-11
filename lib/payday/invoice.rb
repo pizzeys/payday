@@ -29,20 +29,20 @@ module Payday
 
     # The tax rate that we're applying, as a BigDecimal
     def tax_rate=(value)
-      @tax_rate = BigDecimal.new(value.to_s)
+      @tax_rate = BigDecimal(value.to_s)
     end
 
     def tax2_rate=(value)
-      @tax2_rate = BigDecimal.new(value.to_s)
+      @tax2_rate = BigDecimal(value.to_s)
     end
 
     def discount=(value)
-      @discount = BigDecimal.new(value.to_s)
+      @discount = BigDecimal(value.to_s)
     end
 
     # Shipping rate
     def shipping_rate=(value)
-      @shipping_rate = BigDecimal.new(value.to_s)
+      @shipping_rate = BigDecimal(value.to_s)
     end
   end
 end
