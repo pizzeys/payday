@@ -21,3 +21,4 @@ pt:
       unit_price: Preço unitário
       quantity: Quantidade
       amount: Quantia
+      tax: Taxa

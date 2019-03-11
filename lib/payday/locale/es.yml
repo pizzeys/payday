@@ -6,8 +6,8 @@ es:
       refunded: REINTEGRADO
     invoice:
       bill_to: Facturar a
-      invoice_no: "Recibo #:"
-      due_date: "Vencimiento:"
+      invoice_no: "Nº de recibo:"
+      due_date: "Vencimiento en:"
       ship_to: Enviar a
       paid_date: "Pagado en:"
       refunded_date: "Reembolsado en:"
@@ -19,6 +19,7 @@ es:
       discount: "Descuento:"
     line_item:
       description: Descripción
-      unit_price: Precio por Unidad
+      unit_price: Precio unitario
       quantity: Cantidad
-      amount: Cantidad
+      amount: Precio
+      tax: Impuesto
