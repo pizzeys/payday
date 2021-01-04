@@ -16,9 +16,9 @@ Gem::Specification.new do |s|
     the near future.
   EOF
 
-  s.add_dependency("prawn", "~> 2.2.0")
-  s.add_dependency("prawn-svg", "~> 0.30.0")
-  s.add_dependency("prawn-table", "~> 0.2.2")
+  s.add_dependency("prawn", ">= 2.2.0")
+  s.add_dependency("prawn-svg", ">= 0.30.0")
+  s.add_dependency("prawn-table", ">= 0.2.2")
   s.add_dependency("money", ">= 6.9.0")
   s.add_dependency("i18n", ">= 1.0.0")
 
