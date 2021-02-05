@@ -20,12 +20,12 @@ module Payday
 
     # Sets the quantity of this {LineItem}
     def quantity=(value)
-      @quantity = BigDecimal.new(value.to_s)
+      @quantity = BigDecimal(value.to_s)
     end
 
     # Sets the price for this {LineItem}
     def price=(value)
-      @price = BigDecimal.new(value.to_s)
+      @price = BigDecimal(value.to_s)
     end
   end
 end

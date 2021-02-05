@@ -194,7 +194,7 @@ module Payday
       invoice.line_items.each do |line|
         table_data << [line.description,
                        (line.display_price || number_to_currency(line.price, invoice)),
-                       (line.display_quantity || BigDecimal.new(line.quantity.to_s).to_s("F")),
+                       (line.display_quantity || BigDecimal(line.quantity.to_s).to_s("F")),
                        number_to_currency(line.amount, invoice)]
       end
 
