@@ -1,0 +1,25 @@
+fr:
+  payday:
+    status:
+      paid: PAYÉ
+      overdue: EN RETARD
+      refunded: REMBOURSÉ
+    invoice:
+      bill_to: Facturé à
+      ship_to: Livré à
+      invoice_no: "Nº de facture:"
+      due_date: "Paiment dû le:"
+      paid_date: "Payé le:"
+      refunded_date: "Remboursé le:"
+      subtotal: "Sous-total:"
+      shipping: "Livraison:"
+      tax: "Taxes:"
+      total: "Total:"
+      notes: "Notes"
+      discount: "Réduction:"
+    line_item:
+      description: Description
+      unit_price: Prix unitaire
+      quantity: Quantité
+      amount: Montant
+      tax: Taxes

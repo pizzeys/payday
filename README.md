@@ -6,7 +6,7 @@ Installing
 ===
 Payday is available as a Rubygem, so installing it is as easy as running:
 
-    gem install payday --pre
+    gem install payday
 
 Or, using bundler:
 
@@ -20,14 +20,14 @@ It's pretty easy to use Payday with the built in objects. We include the Invoice
 Example:
 
     invoice = Payday::Invoice.new(:invoice_number => 12)
-    invoice.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
-    invoice.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
-    invoice.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
+    invoice.line_items << Payday::LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
+    invoice.line_items << Payday::LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
+    invoice.line_items << Payday::LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
     invoice.render_pdf_to_file("/path/to_file.pdf")
 
 Documentation
 ===
-Documentation for the latest version of Payday is available at [rdoc.info](http://rdoc.info/github/commondream/payday/v1.0.0beta5/frames).
+Documentation for the latest version of Payday is available at [rubydoc.info](http://www.rubydoc.info/gems/payday).
 
 Customizing Your Invoice
 ===
@@ -36,7 +36,7 @@ company details on the invoice.
 
 Example:
 
-    Payday::Config.default.invoice_log = "/path/to/company/logo.png"
+    Payday::Config.default.invoice_logo = "/path/to/company/logo.png"
     Payday::Config.default.company_name = "Awesome Corp"
     Payday::Config.default.company_details = "10 This Way\nManhattan, NY 10001\n800-111-2222\nawesome@awesomecorp.com"
 
@@ -45,43 +45,7 @@ Using Payday with ActiveRecord Objects (or any other objects, for that matter)
 
 Payday focuses on two main objects, an invoice and a line item, so to use Payday with ActiveRecord you'll want to create your own classes for those objects. We include the Payday::Invoiceable and Payday::LineItemable modules to help out with that.
 
-Here's the simplest possible implementation of a custom invoice and line item with Payday:
-
-In a new migration:
-
-    create_table :invoices do |t|
-      # invoices will work without anything but bill_to, but there are quite a few options for the fields you can save, like ship_to
-      # due_at, and paid_at
-      t.string :bill_to
-      
-      t.timestamps
-    end
-    
-    create_table :line_items do |t|
-      t.decimal :price
-      t.string :description
-      t.integer :quantity     # can also be :decimal or :float - just needs to be numeric
-      
-      t.integer :invoice_id
-      
-      t.timestamps
-    end
-    
-In app/models/invoice.rb:
-
-    class Invoice < ActiveRecord::Base
-      include Payday::Invoiceable
-
-      has_many :line_items
-    end
-    
-In app/models/line_item.rb:
-
-    class LineItem < ActiveRecord::Base
-      include Payday::LineItemable
-
-      belongs_to :invoice
-    end
+Thanks to the work of Andrew Nordman, Payday includes a Rails generator that makes it super simple to generate the necessary models and migration for wiring Payday up to your app. Run `rails generate payday:setup --help` for more information about using the generator.
 
 For a bit more fleshed out example, be sure to check out [http://github.com/commondream/payday-example](http://github.com/commondream/payday-example).
 
@@ -91,9 +55,9 @@ Payday's Invoiceable module includes methods for rendering pdfs to disk and for 
 render to string method to render a pdf directly to the browser like this:
 
 In config/initializers/mime_types.rb:
-  
+
     Mime::Type.register 'application/pdf', :pdf
-    
+
 In your controller:
 
     respond_to do |format|
@@ -107,33 +71,35 @@ Be sure to restart your server after you edit the mime_types initializer. The up
 
 I18n
 ===
-Payday uses the i18n gem to provide support for custom labels and internationalized applications. You can change the default labels by
-adding a YAML file in the `config/locales` directory of your Rails app. Here are the default labels you can customize :
-  
-    payday:
-      status:
-        paid: PAID
-        overdue: OVERDUE
-      invoice:
-        bill_to: Bill To
-        ship_to: Ship To
-        invoice_no: "Invoice #:"
-        due_date: "Due Date:"
-        paid_date: "Paid Date:"
-        subtotal: "Subtotal:"
-        tax: "Tax:"
-        total: "Total:"
-      line_item:
-        description: Description
-        unit_price: Unit Price
-        quantity: Quantity
-        amount: Amount
+Payday uses the i18n gem to provide support for custom labels and internationalized applications. You can change the default labels by adding a YAML file in the `config/locales` directory of your Rails app. Here are the default labels you can customize:
+
+    en:
+      payday:
+        status:
+          paid: PAID
+          overdue: OVERDUE
+          refunded: REFUNDED
+        invoice:
+          bill_to: Bill To
+          ship_to: Ship To
+          invoice_no: "Invoice #:"
+          due_date: "Due Date:"
+          paid_date: "Paid Date:"
+          subtotal: "Subtotal:"
+          tax: "Tax:"
+          total: "Total:"
+        line_item:
+          description: Description
+          unit_price: Unit Price
+          quantity: Quantity
+          amount: Amount
+
+If you translate the invoice to your own language, please send me a copy of your locale.yml file so that we can include it with
+the main Payday distribution and other Payday users can enjoy the fruits of your labor.
 
 Examples
 ===
 Here's an [example PDF Invoice](https://github.com/downloads/commondream/payday/example.pdf)
-
-There's also an example Rails application running on Heroku at [http://payday-example.heroku.com](http://payday-example.heroku.com). You can check out the source at [http://github.com/commondream/payday-example](http://github.com/commondream/payday-example).
 
 Contributing
 ===
@@ -144,24 +110,24 @@ We've had some awesome contributers:
 * Sam Pizzey ([pizzeys](http://github.com/pizzeys))
 * Andrew Nordman ([cadwallion](http://github.com/cadwallion))
 * Pierre Olivier Martel ([pomartel](http://github.com/pomartel))
+* Matt Hoofman ([mhoofman](https://github.com/mhoofman))
+* Édouard Brière ([edouard](https://github.com/edouard))
+* Jim Jones ([aantix](https://github.com/aantix))
+* Hussein Morsy ([husseinmorsy](https://github.com/husseinmorsy))
 
 To Do
 ===
 Here's what we're planning on working on with Payday in the near future:
 
-* Let some folks use it for a bit.
-* Release 1.0!
-
 * Actually get a designer to style the invoices.
-* Add support for Money gem or BigDecimal or general numerics (right now we support BigDecimal and general numerics)
+* Add support for Money values
 * Add support for blank line items
 * Add support for indented line items
 * Apply different tax rates to different line items
 * Add support for shipping either pre or post tax
-* Add invoice_details has for stuff under the invoice number
 * Add ability to show skus or product ids on each line item
+* Add ability to add fine print to invoices.
 
-* Add page numbers
 * Ability to render invoice to html for web viewing
 
 Acknowledgements

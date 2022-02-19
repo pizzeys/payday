@@ -3,6 +3,6 @@
 module Payday::LineItemable
   # Returns the total amount for this {LineItemable}, or +price * quantity+
   def amount
-    price * quantity
+    (price + tax) * quantity
   end
 end

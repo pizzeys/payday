@@ -1,0 +1,22 @@
+nl:
+  payday:
+    status:
+      paid: BETAALD
+      overdue: BETAALTERMIJN VERSTREKEN
+      refund: FAKTUUR
+    invoice:
+      bill_to: Te betalen door
+      ship_to: Te bezorgen aan
+      invoice_no: "Faktuur Nr:"
+      due_date: "Te betalen voor:"
+      paid_date: "Betaald op:"
+      subtotal: "Subtotaal:"
+      shipping: "Levering:"
+      tax: "Btw:"
+      total: "Totaal:"
+      notes: "Opmerkingen"
+    line_item:
+      description: Omschrijving
+      unit_price: Eenheidsprijs
+      quantity: Hoeveelheid
+      amount: Bedrag

@@ -1,0 +1,26 @@
+de:
+  payday:
+    status:
+      overdue: ÜBERFÄLLIG
+      paid: BEZAHLT
+      refunded: ZURÜCKGEZAHLT
+    invoice:
+      bill_to: Rechnung an
+      ship_to: Versenden an
+      invoice_no: "Rechnungsnr.:"
+      invoice_date: "Rechnungsdatum:"
+      due_date: "Fälligkeit:"
+      paid_date: "Zahlungsdatum:"
+      refunded_date: "Rückerstattungsdatum:"
+      subtotal: "Zwischensumme:"
+      shipping: "Versand:"
+      tax: "Steuern:"
+      total: "Gesamt:"
+      notes: "Anmerkungen"
+      discount: "Rabatt:"
+    line_item:
+      description: Beschreibung
+      unit_price: Stückpreis
+      quantity: Menge
+      amount: Betrag
+      tax: Steuern

@@ -1,0 +1,25 @@
+es:
+  payday:
+    status:
+      overdue: RETRASADO
+      paid: PAGADO
+      refunded: REINTEGRADO
+    invoice:
+      bill_to: Facturar a
+      invoice_no: "Nº de recibo:"
+      due_date: "Vencimiento en:"
+      ship_to: Enviar a
+      paid_date: "Pagado en:"
+      refunded_date: "Reembolsado en:"
+      subtotal: "Subtotal:"
+      shipping: "Envío:"
+      tax: "Impuesto:"
+      total: "Total:"
+      notes: "Notas"
+      discount: "Descuento:"
+    line_item:
+      description: Descripción
+      unit_price: Precio unitario
+      quantity: Cantidad
+      amount: Precio
+      tax: Impuesto

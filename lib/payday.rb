@@ -1,14 +1,21 @@
 # Not much to see here
-require 'date'
-require 'time'
-require 'bigdecimal'
-require 'prawn'
-require 'money'
+require "date"
+require "time"
+require "bigdecimal"
+require "prawn"
+require "prawn-svg"
+require "prawn/table"
+require "money"
 
-require 'payday/version'
-require 'payday/config'
-require 'payday/line_itemable'
-require 'payday/line_item'
-require 'payday/pdf_renderer'
-require 'payday/invoiceable'
-require 'payday/invoice'
+require_relative "payday/version"
+require_relative "payday/config"
+require_relative "payday/i18n"
+require_relative "payday/line_itemable"
+require_relative "payday/line_item"
+require_relative "payday/pdf_renderer"
+require_relative "payday/invoiceable"
+require_relative "payday/invoice"
+
+Prawn::Font::AFM.hide_m17n_warning = true
+
+Money.locale_backend = :i18n
